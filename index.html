@@ -105,10 +105,11 @@
             font-family: 'Amiri', serif;
             font-size: clamp(32px, 5.5vh, 56px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--mosque-name-color, var(--gold-primary));
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(197, 160, 56, 0.3);
             margin: 0;
             letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         /* Main Viewport Container */
@@ -131,10 +132,10 @@
             position: relative;
         }
 
-        /* Jummah Side Box */
+        /* Jummah & Shuruq Side Boxes */
         .side-box-card {
-            background: rgba(14, 21, 15, 0.88);
-            border: 2px solid var(--border-card);
+            background: var(--jummah-box-bg, rgba(14, 21, 15, 0.88));
+            border: 2px solid var(--jummah-box-border, var(--border-card));
             border-radius: 18px;
             padding: 20px 24px;
             text-align: center;
@@ -144,7 +145,7 @@
 
         .side-box-card h3 {
             margin: 0 0 8px 0;
-            color: var(--gold-primary);
+            color: var(--jummah-text-color, var(--gold-primary));
             font-size: clamp(20px, 2.8vh, 28px);
             font-weight: 700;
         }
@@ -153,14 +154,22 @@
             font-family: 'Amiri', 'Changa', monospace;
             font-size: clamp(28px, 4.5vh, 46px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--jummah-text-color, var(--gold-primary));
             direction: ltr;
+        }
+
+        #box-shuruq h3 {
+            color: var(--cards-name-color, var(--jummah-text-color, var(--gold-primary)));
+        }
+
+        #box-shuruq .time-val, #disp-shuruq-val {
+            color: var(--shuruq-num-color, var(--gold-primary));
         }
 
         /* Center Big Clock Card */
         .giant-clock-card {
-            background: rgba(14, 21, 15, 0.88);
-            border: 2.5px solid var(--border-card);
+            background: var(--clock-box-bg, rgba(14, 21, 15, 0.88));
+            border: 2.5px solid var(--clock-box-border, var(--border-card));
             border-radius: 22px;
             padding: 16px 48px 18px 48px;
             text-align: center;
@@ -187,7 +196,7 @@
             font-family: 'Amiri', 'Changa', monospace;
             font-size: clamp(34px, 6.2vh, 64px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--clock-sec-color, var(--gold-primary));
             line-height: 0.95;
             text-shadow: 0 0 12px var(--gold-glow);
         }
@@ -196,7 +205,7 @@
             font-family: 'Cairo', sans-serif;
             font-size: clamp(18px, 3vh, 32px);
             font-weight: 800;
-            color: var(--gold-primary);
+            color: var(--clock-sec-color, var(--gold-primary));
             line-height: 1;
             margin-top: 4px;
         }
@@ -205,7 +214,7 @@
             font-family: 'Amiri', 'Changa', monospace;
             font-size: clamp(80px, 16vh, 155px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--clock-digits-color, var(--gold-primary));
             line-height: 0.9;
             letter-spacing: 2px;
             text-shadow: 0 0 25px var(--gold-glow);
@@ -213,7 +222,7 @@
 
         .clock-dates-sub {
             margin-top: 14px;
-            color: var(--gold-primary);
+            color: var(--clock-date-color, var(--gold-primary));
             font-size: clamp(16px, 2.3vh, 23px);
             font-weight: 700;
             line-height: 1.4;
@@ -222,31 +231,59 @@
         /* Next Prayer Section */
         .next-prayer-center {
             text-align: center;
-            margin: 10px 0 18px 0;
+            margin: 6px 0 14px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .next-prayer-title {
-            font-size: clamp(20px, 2.8vh, 32px);
+            font-size: clamp(20px, 3.2vh, 34px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--next-title-color, var(--gold-primary));
             margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .next-prayer-info-row {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 2px 0 4px 0;
         }
 
         .next-prayer-name {
-            font-size: clamp(32px, 5.5vh, 62px);
+            font-size: clamp(30px, 5.2vh, 56px);
             font-weight: 900;
-            color: var(--gold-primary);
+            color: var(--next-name-color, var(--gold-primary));
             line-height: 1.1;
             text-shadow: 0 0 16px var(--gold-glow);
         }
 
+        .next-prayer-time-val {
+            font-size: clamp(20px, 3.2vh, 34px);
+            font-weight: 700;
+            color: var(--next-title-color, var(--gold-primary));
+            font-family: 'Amiri', 'Changa', monospace;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 2px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(197, 160, 56, 0.35);
+            direction: ltr;
+        }
+
         .next-prayer-timer {
             font-family: 'Changa', monospace;
-            font-size: clamp(26px, 4.4vh, 50px);
+            font-size: clamp(28px, 4.6vh, 52px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--next-timer-color, var(--gold-primary));
             direction: ltr;
-            margin-top: 2px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            text-shadow: 0 0 16px var(--gold-glow);
         }
 
         /* Bottom Row Prayer Cards */
@@ -260,8 +297,8 @@
         .prayer-card-item {
             flex: 1;
             max-width: 220px;
-            background: rgba(14, 21, 15, 0.88);
-            border: 2px solid var(--border-card);
+            background: var(--cards-bg, rgba(14, 21, 15, 0.88));
+            border: 2px solid var(--cards-border, var(--border-card));
             border-radius: 18px;
             padding: 14px 10px;
             text-align: center;
@@ -279,7 +316,7 @@
         .prayer-card-item .card-name {
             font-size: clamp(18px, 2.6vh, 28px);
             font-weight: 700;
-            color: var(--gold-primary);
+            color: var(--cards-name-color, var(--gold-primary));
             margin-bottom: 6px;
         }
 
@@ -292,10 +329,21 @@
             line-height: 1.1;
         }
 
+        #time-fajr { color: var(--fajr-num-color, var(--gold-primary)); }
+        #time-shuruq, #disp-shuruq-val { color: var(--shuruq-num-color, var(--gold-primary)); }
+        #time-dhuhr { color: var(--dhuhr-num-color, var(--gold-primary)); }
+        #time-asr { color: var(--asr-num-color, var(--gold-primary)); }
+        #time-maghrib { color: var(--maghrib-num-color, var(--gold-primary)); }
+        #time-isha { color: var(--isha-num-color, var(--gold-primary)); }
+
         .prayer-card-item .card-iqama {
-            font-size: 13px;
-            color: #94A3B8;
+            font-size: var(--iqama-font-size, 17px);
+            font-weight: 700;
+            color: var(--cards-iqama-color, #FBBF24);
             margin-top: 4px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            transition: font-size 0.15s ease, color 0.15s ease;
         }
 
         /* =========================================================================
@@ -324,50 +372,95 @@
             display: flex;
         }
 
+        /* Close Button in Upper Left Corner (X) for all overlays/images/azkar/sounds */
+        .stage-close-btn {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.85);
+            border: 2px solid #E2E8F0;
+            color: #FFFFFF;
+            font-size: 26px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            line-height: 1;
+        }
+
+        .stage-close-btn:hover {
+            background: #EF4444;
+            border-color: #F87171;
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+        }
+
+        .stage-close-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Stage content floats cleanly directly over custom images without opaque enclosing boxes */
         .stage-banner-box {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--gold-primary);
-            border-radius: 20px;
-            padding: 24px 40px;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            padding: 12px 24px;
             display: inline-block;
             margin: 0 auto;
-            backdrop-filter: blur(8px);
-            max-width: 90%;
+            max-width: 95%;
         }
 
         .stage-title {
-            font-size: clamp(36px, 6vh, 74px);
+            font-size: clamp(38px, 6.8vh, 82px);
             font-weight: 900;
-            color: var(--gold-primary);
-            margin: 0 0 10px 0;
-            text-shadow: 0 0 20px var(--gold-glow);
+            color: #FBBF24;
+            margin: 0 0 12px 0;
+            line-height: 1.25;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 0, 0, 0.85);
         }
 
         .stage-subtitle {
-            font-size: clamp(20px, 3.2vh, 38px);
+            font-size: clamp(22px, 3.8vh, 44px);
             color: #FFFFFF;
+            font-weight: 700;
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.6;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.85);
         }
 
         .stage-timer-display {
             font-family: 'Changa', monospace;
-            font-size: clamp(54px, 12vh, 120px);
+            font-size: clamp(62px, 13.5vh, 136px);
             font-weight: 900;
             color: #F59E0B;
             direction: ltr;
-            text-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
-            margin: 20px 0;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 0, 0, 0.9), 0 0 50px rgba(245, 158, 11, 0.7);
+            margin: 16px 0;
         }
 
         .stage-footer-text {
-            color: #CBD5E1;
-            font-size: clamp(18px, 2.4vh, 28px);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 8px 24px;
-            border-radius: 30px;
+            color: #F8FAFC;
+            font-size: clamp(18px, 2.6vh, 32px);
+            font-weight: 700;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 6px 16px;
+            border-radius: 0;
             display: inline-block;
             margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 12px rgba(0, 0, 0, 0.9);
         }
 
         /* =========================================================================
@@ -540,6 +633,130 @@
             display: block;
         }
 
+        /* Preset Background Grid */
+        .bg-preset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .bg-preset-thumb {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            cursor: pointer;
+            aspect-ratio: 16 / 9;
+            transition: all 0.2s ease;
+            background: #0f172a;
+        }
+
+        .bg-preset-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .bg-preset-thumb span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.75);
+            color: #FFFFFF;
+            font-size: 11px;
+            text-align: center;
+            padding: 3px 0;
+            font-weight: bold;
+        }
+
+        .bg-preset-thumb:hover, .bg-preset-thumb.active {
+            border-color: #F59E0B;
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+        }
+
+        /* Brightness Mode Buttons */
+        .brightness-modes-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-brightness-mode {
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #1E293B;
+            border: 1px solid #475569;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-brightness-mode:hover, .btn-brightness-mode.active {
+            background: #D97706;
+            border-color: #F59E0B;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Range Slider */
+        .form-range-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: #334155;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .form-range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #F59E0B;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+            border: 2px solid #FFFFFF;
+        }
+
+        /* Floating Toast Notification */
+        .app-toast-message {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #F59E0B;
+            color: #FFFFFF;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            transform: translateY(-80px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-toast-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         /* Prayer Time Manual Steppers (+ / -) */
         .prayer-offset-card {
             display: flex;
@@ -627,6 +844,102 @@
             font-family: 'Changa', monospace;
         }
 
+        /* Color Picker & Custom Theme Styles */
+        .color-picker-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 7px 12px;
+            margin-bottom: 7px;
+        }
+
+        .color-picker-label {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #E2E8F0;
+        }
+
+        .color-picker-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            direction: ltr;
+        }
+
+        .color-input-bubble {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 38px;
+            height: 34px;
+            background: none;
+            border: 2px solid #64748B;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            outline: none;
+        }
+
+        .color-input-bubble::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-input-bubble::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+        .color-hex-tag {
+            font-family: 'Changa', monospace;
+            font-size: 12px;
+            color: #94A3B8;
+            width: 60px;
+            text-align: center;
+            background: #0B1120;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px solid #1E293B;
+        }
+
+        .theme-presets-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn-theme-preset {
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid #475569;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #FFFFFF;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+
+        .btn-theme-preset:active {
+            transform: scale(0.96);
+        }
+
+        .color-group-subtitle {
+            margin: 12px 0 6px 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         /* Drawer Bottom Buttons (Exact matching Screenshots) */
         .drawer-bottom-bar {
             padding: 16px 20px;
@@ -685,17 +998,118 @@
         .btn-test-sequence:hover {
             background: #0F766E;
         }
+
+        /* Audio Upload & Player Component Styling */
+        .audio-upload-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1.5px dashed #c5a038;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-file-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            font-size: 13px;
+            color: #E2E8F0;
+        }
+
+        .audio-btn-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-audio-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-audio-play {
+            background: #10B981;
+            color: white;
+        }
+        .btn-audio-play:hover {
+            background: #059669;
+        }
+
+        .btn-audio-stop {
+            background: #EF4444;
+            color: white;
+        }
+        .btn-audio-stop:hover {
+            background: #DC2626;
+        }
+
+        .btn-audio-delete {
+            background: #334155;
+            color: #FCA5A5;
+            border: 1px solid #64748B;
+        }
+        .btn-audio-delete:hover {
+            background: #475569;
+            color: #FECACA;
+        }
+
+        /* Drawer Quick Actions */
+        .drawer-quick-actions-box {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.75) 100%);
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        .btn-quick-drawer-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-family: 'Changa', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .btn-quick-drawer-action:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.15);
+        }
+        .btn-quick-drawer-action:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body>
     <div class="bg-layer" id="main-bg-layer"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Top Left Quick Action Icons (as shown in Screenshots) -->
+    <!-- Top Left Action Icons (إعدادات ومِلء الشاشة) -->
     <div class="top-icons-bar">
-        <button class="icon-btn" id="btn-toggle-settings" title="إعدادات الساعة (S)">⚙️</button>
-        <button class="icon-btn" id="btn-refresh" title="تحديث مواقيت الصلاة" onclick="recalcAndRefresh()">🔄</button>
-        <button class="icon-btn" id="btn-brightness" title="وضع السطوع">☀️</button>
+        <button class="icon-btn" id="btn-toggle-settings" title="إعدادات الساعة والمواقيت (S)">⚙️</button>
         <button class="icon-btn" id="btn-fs" title="ملء الشاشة (F / F11)">⛶</button>
     </div>
 
@@ -706,10 +1120,10 @@
 
     <!-- Main Viewport Content -->
     <div class="main-display-area">
-        <!-- Center Clock Row -->
+        <!-- Center Clock Row: [صندوق الجمعة] [الساعة الرئيسية الكبيرة] [صندوق الشروق] -->
         <div class="center-clock-row">
-            <!-- Left Side Box: Friday Prayer (صلاة الجمعة) -->
-            <div class="side-box-card">
+            <!-- Right Side Box: Friday Prayer (صلاة الجمعة) -->
+            <div class="side-box-card" id="box-jummah">
                 <h3>الجمعة</h3>
                 <div class="time-val" id="disp-jummah-val">12:30</div>
             </div>
@@ -729,18 +1143,25 @@
                     <div id="disp-greg-date">السبت، 19 سبتمبر 2026</div>
                 </div>
             </div>
-        </div>
 
-        <!-- Next Prayer Section (☆ الصلاة القادمة ☆) -->
-        <div class="next-prayer-center">
-            <div class="next-prayer-title">☆ الصلاة القادمة ☆</div>
-            <div class="next-prayer-name" id="disp-next-prayer-title">المغرب</div>
-            <div class="next-prayer-timer">
-                تبقى <span id="disp-remaining-time">00:27:41</span>
+            <!-- Left Side Box: Sunrise (الشروق) مقابل وقت صندوق الجمعة -->
+            <div class="side-box-card" id="box-shuruq">
+                <h3>الشروق</h3>
+                <div class="time-val" id="disp-shuruq-val">05:52</div>
             </div>
         </div>
 
-        <!-- Bottom 5 Prayer Cards (الظهر - العصر - المغرب - العشاء - الفجر) -->
+        <!-- Next Prayer Section (باقي للصلاة القادمة) -->
+        <div class="next-prayer-center">
+            <div class="next-prayer-title">باقي للصلاة القادمة</div>
+            <div class="next-prayer-info-row">
+                <span class="next-prayer-name" id="disp-next-prayer-title">المغرب</span>
+                <span class="next-prayer-time-val" id="disp-next-prayer-time">06:15 م</span>
+            </div>
+            <div class="next-prayer-timer" id="disp-remaining-time">00:27:41</div>
+        </div>
+
+        <!-- Bottom 5 Prayer Cards (الفجر - الظهر - العصر - المغرب - العشاء) -->
         <div class="prayer-cards-bar">
             <div class="prayer-card-item" id="card-fajr">
                 <div class="card-name">الفجر</div>
@@ -777,18 +1198,18 @@
 
     <!-- STAGE 1: الأذان (Adhan Stage) -->
     <div class="stage-overlay" id="overlay-stage-adhan">
+        <button class="stage-close-btn" onclick="dismissCurrentStage()" title="إغلاق الصوت والصورة والعودة للرئيسية (X)" aria-label="إغلاق">✕</button>
         <div class="stage-banner-box" id="adhan-text-box">
-            <h1 class="stage-title" id="stage-adhan-heading">حان الآن موعد أذان المغرب</h1>
-            <p class="stage-subtitle">الله أكبر الله أكبر ◆ لا إله إلا الله</p>
+            <h1 class="stage-title" id="stage-adhan-heading" style="font-size: clamp(38px, 7.5vh, 80px); margin: 0; line-height: 1.25;">حان الآن موعد أذان الظهر</h1>
         </div>
         <div>
             <div class="stage-timer-display" id="stage-adhan-timer">03:14</div>
         </div>
-        <div class="stage-footer-text">مرحلة رفع الأذان المبارك</div>
     </div>
 
     <!-- STAGE 2: العد التنازلي للإقامة (Countdown Stage) -->
     <div class="stage-overlay" id="overlay-stage-iqama">
+        <button class="stage-close-btn" onclick="dismissCurrentStage()" title="إغلاق والصوت والعودة للرئيسية (X)" aria-label="إغلاق">✕</button>
         <div class="stage-banner-box">
             <h1 class="stage-title">العد التنازلي لإقامة الصلاة</h1>
             <p class="stage-subtitle">استعدوا للصلاة رحمكم الله ◆ بين كل أذانين صلاة</p>
@@ -801,19 +1222,23 @@
 
     <!-- STAGE 3: إغلاق الهاتف (Silence Phone Stage - matching Screenshot 73) -->
     <div class="stage-overlay" id="overlay-stage-silence">
-        <div class="stage-banner-box" style="border-color: #EF4444; background: rgba(20, 5, 5, 0.85);">
-            <div style="font-size: 60px; margin-bottom: 10px;">📴</div>
-            <h1 class="stage-title" style="color: #F87171;">من فضلك أغلق الهاتف عند دخول المسجد</h1>
-            <p class="stage-subtitle">قال تعالى: «قَدْ أَفْلَحَ الْمُؤْمِنُونَ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ»</p>
+        <button class="stage-close-btn" onclick="dismissCurrentStage()" title="إغلاق والصوت والعودة للرئيسية (X)" aria-label="إغلاق">✕</button>
+        <div id="silence-text-content" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%;">
+            <div class="stage-banner-box">
+                <div style="font-size: 60px; margin-bottom: 10px;">📴</div>
+                <h1 class="stage-title" style="color: #F87171;">من فضلك أغلق الهاتف عند دخول المسجد</h1>
+                <p class="stage-subtitle">قال تعالى: «قَدْ أَفْلَحَ الْمُؤْمِنُونَ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ»</p>
+            </div>
+            <div>
+                <div class="stage-timer-display" style="color: #F87171;" id="stage-silence-timer">01:00</div>
+            </div>
+            <div class="stage-footer-text">يرجى وضع الهواتف على وضع الصامت أو إغلاقها</div>
         </div>
-        <div>
-            <div class="stage-timer-display" style="color: #F87171;" id="stage-silence-timer">01:00</div>
-        </div>
-        <div class="stage-footer-text">يرجى وضع الهواتف على وضع الصامت أو إغلاقها</div>
     </div>
 
     <!-- STAGE 4: أذكار ما بعد الصلاة (Azkar Stage) -->
     <div class="stage-overlay" id="overlay-stage-azkar">
+        <button class="stage-close-btn" onclick="dismissCurrentStage()" title="إغلاق والصوت والعودة للرئيسية (X)" aria-label="إغلاق">✕</button>
         <div class="stage-banner-box">
             <h1 class="stage-title">أذكار ما بعد الصلاة</h1>
             <p class="stage-subtitle" id="azkar-slide-content">«أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ»<br>«اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ»</p>
@@ -835,6 +1260,33 @@
         </div>
 
         <div class="drawer-scroll-body">
+            <!-- شريط التحكم السريع (المنقول من الشاشة الرئيسية) -->
+            <div class="drawer-quick-actions-box">
+                <div style="font-weight: 700; color: #F59E0B; font-size: 13px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="display:flex; align-items:center; gap:6px;">⚡ أدوات التحكم السريع:</span>
+                    <span style="font-size:11px; color:#94A3B8; font-weight:normal;">(منقولة من الشاشة الرئيسية)</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <!-- 1. تحديث وحساب مواقيت الصلاة -->
+                    <button type="button" class="btn-quick-drawer-action" onclick="recalcAndRefresh()" style="background: #064e3b; border: 1px solid #10b981; color: #a7f3d0;" title="إعادة حساب وتحديث مواقيت الصلاة فوراً">
+                        <span style="font-size: 16px;">🔄</span>
+                        <span>تحديث وتحديد مواقيت الصلاة الآن</span>
+                    </button>
+
+                    <!-- 2. تشغيل / كتم الصوت -->
+                    <button type="button" id="btn-drawer-toggle-sound" class="btn-quick-drawer-action" onclick="toggleSoundQuick()" style="background: #1e293b; border: 1px solid #475569; color: #f8fafc;" title="كتم أو تفعيل صوت الأذان والتنبيهات">
+                        <span id="disp-drawer-sound-icon" style="font-size: 16px;">🔊</span>
+                        <span id="disp-drawer-sound-text">الصوت مفعل (اضغط للكتم)</span>
+                    </button>
+
+                    <!-- 3. وضع السطوع وتفتيح الشاشة -->
+                    <button type="button" id="btn-drawer-brightness" class="btn-quick-drawer-action" onclick="cycleBrightnessMode()" style="background: #451a03; border: 1px solid #f59e0b; color: #fde68a;" title="التبديل بين أوضاع سطوع الشاشة">
+                        <span style="font-size: 16px;">☀️</span>
+                        <span id="disp-drawer-brightness-text">وضع السطوع: ساطع (اضغط للتبديل)</span>
+                    </button>
+                </div>
+            </div>
+
             <!-- 1. معلومات عامة (Screenshot 70) -->
             <div class="drawer-accordion">
                 <div class="drawer-acc-header" onclick="toggleAcc(this)">
@@ -845,6 +1297,14 @@
                     <div class="form-group">
                         <label>اسم المسجد</label>
                         <input type="text" id="cfg-mosque" class="form-input-text" value="مصلى شارع بسمان">
+                    </div>
+                    <div class="form-group">
+                        <label style="color: #F59E0B; font-weight: bold;">لون خط اسم المسجد</label>
+                        <div class="color-picker-control" style="width: 100%; justify-content: flex-start; gap: 12px; margin-top: 4px; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 8px; border: 1px solid #334155;">
+                            <input type="color" class="color-input-bubble" id="col-mosqueNameColor-general" value="#c5a038" onchange="onThemeColorChange('mosqueNameColor', this.value)">
+                            <span class="color-hex-tag" id="tag-mosqueNameColor-general">#c5a038</span>
+                            <span style="font-size: 12px; color: #CBD5E1;">اضغط لاختيار لون اسم المسجد المعروض بالأعلى</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>الدولة</label>
@@ -929,6 +1389,30 @@
                             <input type="time" id="cfg-iq-jummah" class="form-input-text" value="12:30">
                         </div>
                     </div>
+
+                    <!-- تخصيص خط أوقات الإقامة (اللون والحجم) -->
+                    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #3B4B61; border-radius: 10px; padding: 12px; margin-top: 10px;">
+                        <div style="font-weight: 700; color: #F59E0B; font-size: 13.5px; margin-bottom: 8px;">
+                            ⚙️ تخصيص خط الإقامة بالبطاقات (اللون والحجم)
+                        </div>
+                        <div class="input-row-2 form-group" style="margin-bottom: 4px;">
+                            <div>
+                                <label style="font-size: 12.5px;">لون خط الإقامة</label>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <input type="color" id="cfg-iqama-font-color" value="#fbbf24" style="width: 44px; height: 38px; border: none; border-radius: 6px; cursor: pointer; background: transparent;" onchange="onIqamaColorChange(this.value)">
+                                    <span id="tag-iqama-font-color" style="font-family: monospace; font-size: 13px; color: #FBBF24; font-weight: bold;">#fbbf24</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="font-size: 12.5px;">حجم خط الإقامة (تكبير وتصغير)</label>
+                                <div class="prayer-offset-stepper" style="margin-top: 2px;">
+                                    <button type="button" class="stepper-btn btn-minus" onclick="changeIqamaFontSize(-1)" title="تصغير خط الإقامة">-</button>
+                                    <span class="stepper-display-val" id="disp-iqama-font-size">17px</span>
+                                    <button type="button" class="stepper-btn btn-plus" onclick="changeIqamaFontSize(1)" title="تكبير خط الإقامة">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -983,6 +1467,72 @@
                                 <option value="bottom">أسفل الشاشة</option>
                             </select>
                         </div>
+
+                        <!-- 1. أذان صلاة الفجر المخصص (خاص بالفجر فقط) -->
+                        <div class="audio-upload-card" style="border: 1px solid #d97706; background: rgba(69, 26, 3, 0.35);">
+                            <label style="color: #FBBF24; font-weight: 700; font-size: 13px; display:flex; align-items:center; gap:6px;">
+                                <span>🌅 صوت أذان الفجر المخصص (خاص بصلاة الفجر فقط):</span>
+                            </label>
+                            <p style="margin: 0; font-size: 11px; color: #FDE68A;">
+                                ينطلق هذا الصوت تلقائياً عند دخول وقت صلاة الفجر فقط (يمكنك رفع أذان يحتوي على: «الصلاة خيرٌ من النوم»).
+                            </p>
+                            <input type="file" id="cfg-stage-fajr-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'adhan_fajr')">
+                            
+                            <div class="audio-file-badge" id="badge-stage-fajr-audio" style="border-color: #d97706;">
+                                <span id="name-stage-fajr-audio" style="color: #94A3B8;">لم يتم رفع ملف أذان مخصص للفجر (يتم استخدام الصوت الافتراضي)</span>
+                            </div>
+
+                            <div class="audio-btn-row">
+                                <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-stage-fajr" onclick="testAudioPlay('adhan_fajr')">▶ تجربة أذان الفجر</button>
+                                <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-stage-fajr" onclick="stopAllSounds()">⏹ إيقاف</button>
+                                <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-stage-fajr" onclick="removeAudioFile('adhan_fajr')">🗑️ حذف صوت الفجر</button>
+                            </div>
+
+                            <div style="margin-top: 6px;">
+                                <label style="font-size: 12px; color: #CBD5E1;">مصدر أذان الفجر:</label>
+                                <select id="cfg-stage-fajr-source" class="form-select" onchange="onFajrSourceChange(this.value)">
+                                    <option value="custom">📁 ملف مخصص مرفوع من جهازي للفجر</option>
+                                    <option value="preset_makkah">🕋 أذان الفجر بالحرم المكي (الصلاة خير من النوم)</option>
+                                    <option value="preset_madinah">🕌 أذان الفجر بالمسجد النبوي الشريف</option>
+                                    <option value="same_as_adhan">🔄 نفس صوت الأذان العام لباقي الصلوات</option>
+                                    <option value="chime">🔔 تكبيرات ونغمة أذان الفجر</option>
+                                    <option value="silent">🔕 صامت لصلاة الفجر</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 2. صوت الأذان العام لباقي الصلوات -->
+                        <div class="audio-upload-card" style="margin-top: 10px;">
+                            <label style="color: #38BDF8; font-weight: 700; font-size: 13px; display:flex; align-items:center; gap:6px;">
+                                <span>🕌 صوت الأذان العام لباقي الصلوات (الظهر، العصر، المغرب، العشاء):</span>
+                            </label>
+                            <p style="margin: 0; font-size: 11px; color: #94A3B8;">
+                                هذا الصوت ينطلق عند دخول وقت جميع الصلوات الأخرى باستثناء صلاة الفجر.
+                            </p>
+                            <input type="file" id="cfg-stage-adhan-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'adhan')">
+                            
+                            <div class="audio-file-badge" id="badge-stage-adhan-audio">
+                                <span id="name-stage-adhan-audio" style="color: #94A3B8;">لم يتم رفع ملف صوت (يتم استخدام الصوت الافتراضي)</span>
+                            </div>
+
+                            <div class="audio-btn-row">
+                                <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-stage-adhan" onclick="testAudioPlay('adhan')">▶ استماع للأذان العام</button>
+                                <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-stage-adhan" onclick="stopAllSounds()">⏹ إيقاف</button>
+                                <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-stage-adhan" onclick="removeAudioFile('adhan')">🗑️ حذف الصوت</button>
+                            </div>
+
+                            <!-- مصدر صوت الأذان العام -->
+                            <div style="margin-top: 6px;">
+                                <label style="font-size: 12px; color: #CBD5E1;">أو اختر من أصوات الأذان العام الجاهزة:</label>
+                                <select id="cfg-stage-adhan-source" class="form-select" onchange="onAdhanSourceChange(this.value)">
+                                    <option value="custom">📁 ملف مخصص مرفوع من جهازي</option>
+                                    <option value="preset_makkah">🕋 أذان الحرم المكي الشريف</option>
+                                    <option value="preset_madinah">🕌 أذان المسجد النبوي الشريف</option>
+                                    <option value="chime">🔔 نغمة تنبيه وتكبيرات إسلامية</option>
+                                    <option value="silent">🔕 صامت بدون صوت</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- المرحلة 2: العد التنازلي للإقامة -->
@@ -996,7 +1546,25 @@
                             </div>
                             <button type="button" class="btn-clear-img" onclick="clearImg('prev-iqama-box', 'cfg_iqama_img_data', 'cfg-iqama-img')">مسح الصورة</button>
                         </div>
-                        <p style="font-size: 12px; color: #94A3B8; margin: 0;">* وقت العد التنازلي يتم احتسابه تلقائياً من وقت الإقامة المحدد لكل صلاة، أو يمكنك تعديل الإقامة من قسم أوقات الإقامة أعلاه.</p>
+                        <p style="font-size: 12px; color: #94A3B8; margin: 0 0 10px 0;">* وقت العد التنازلي يتم احتسابه تلقائياً من وقت الإقامة المحدد لكل صلاة، أو يمكنك تعديل الإقامة من قسم أوقات الإقامة أعلاه.</p>
+
+                        <!-- خانة رفع ملف صوت تنبيه الإقامة -->
+                        <div class="audio-upload-card" style="border-color: #38BDF8;">
+                            <label style="color: #38BDF8; font-weight: 700; font-size: 13px; display:flex; align-items:center; gap:6px;">
+                                <span>🔔 صوت تنبيه الإقامة (رفع من الجهاز):</span>
+                            </label>
+                            <input type="file" id="cfg-stage-iqama-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'iqama')">
+                            
+                            <div class="audio-file-badge" id="badge-stage-iqama-audio">
+                                <span id="name-stage-iqama-audio" style="color: #94A3B8;">نغمة تنبيه الإقامة الافتراضية</span>
+                            </div>
+
+                            <div class="audio-btn-row">
+                                <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-stage-iqama" onclick="testAudioPlay('iqama')">▶ تجربة صوت الإقامة</button>
+                                <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-stage-iqama" onclick="stopAllSounds()">⏹ إيقاف</button>
+                                <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-stage-iqama" onclick="removeAudioFile('iqama')">🗑️ حذف</button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- المرحلة 3: إغلاق الهاتف (Screenshot 73) -->
@@ -1055,39 +1623,413 @@
                 </div>
             </div>
 
-            <!-- 4. العرض والمظهر والخلفية -->
+            <!-- 4. الخلفية الرئيسية وتفتيح الصورة والتحكم بالسطوع (User Request) -->
             <div class="drawer-accordion">
-                <div class="drawer-acc-header" onclick="toggleAcc(this)">
-                    <span>العرض والمظهر</span>
+                <div class="drawer-acc-header" style="color: #F59E0B;" onclick="toggleAcc(this)">
+                    <span>🖼️ الخلفية الرئيسية وتفتيح الصورة والسطوع</span>
                     <span>▼</span>
                 </div>
-                <div class="drawer-acc-body">
+                <div class="drawer-acc-body expanded">
+                    <!-- رفع صورة الخلفية من الجهاز -->
                     <div class="form-group">
-                        <label>صورة الخلفية الرئيسية للمسجد</label>
+                        <label>تغيير صورة الخلفية (رفع من الجهاز)</label>
                         <input type="file" id="cfg-main-bg" accept="image/*" class="form-input-text" onchange="previewImg(this, 'prev-main-bg-box', 'cfg_main_bg_data')">
-                        <div class="image-preview-container" id="prev-main-bg-box">
+                        <div class="image-preview-container" id="prev-main-bg-box" style="height: 120px;">
                             <span style="color:#64748B; font-size:12px;">الخلفية الافتراضية (المسجد النبوي)</span>
                         </div>
-                        <button type="button" class="btn-clear-img" onclick="clearImg('prev-main-bg-box', 'cfg_main_bg_data', 'cfg-main-bg')">استعادة الخلفية الأصلية</button>
+                        <button type="button" class="btn-clear-img" onclick="clearImg('prev-main-bg-box', 'cfg_main_bg_data', 'cfg-main-bg')" style="margin-top:6px;">↺ استعادة الخلفية الأصلية</button>
+                    </div>
+
+                    <!-- مكتبة خلفيات إسلامية جاهزة سريعة -->
+                    <div class="form-group">
+                        <label>أو اختر من خلفيات المساجد الجاهزة عالية الدقة:</label>
+                        <div class="bg-preset-grid">
+                            <div class="bg-preset-thumb" onclick="selectPresetBg('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1920&q=80')" title="المسجد النبوي الشريف">
+                                <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=300&q=60" alt="النبوي">
+                                <span>المسجد النبوي</span>
+                            </div>
+                            <div class="bg-preset-thumb" onclick="selectPresetBg('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80')" title="المسجد الحرام">
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=60" alt="الحرم">
+                                <span>المسجد الحرام</span>
+                            </div>
+                            <div class="bg-preset-thumb" onclick="selectPresetBg('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1920&q=80')" title="المسجد الأقصى المبارك">
+                                <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=300&q=60" alt="الأقصى">
+                                <span>قبة الصخرة</span>
+                            </div>
+                            <div class="bg-preset-thumb" onclick="selectPresetBg('https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1920&q=80')" title="محراب وزخرفة إسلامية">
+                                <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=300&q=60" alt="محراب">
+                                <span>محراب إسلامي</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- التحكم بالسطوع وتفتيح الصورة -->
+                    <div class="form-group" style="margin-top: 14px; background: rgba(0,0,0,0.35); padding: 12px; border-radius: 10px; border: 1px solid #334155;">
+                        <label style="color: #F59E0B; font-weight: 700; font-size: 14px;">☀️ وضع السطوع وتفتيح الصورة لتكن ساطعة:</label>
+                        
+                        <!-- أزرار أوضاع السطوع الجاهزة -->
+                        <div class="brightness-modes-row">
+                            <button type="button" class="btn-brightness-mode" id="bm-super" onclick="applyBrightnessPreset('super')">☀️ ساطعة جداً (فائق)</button>
+                            <button type="button" class="btn-brightness-mode" id="bm-bright" onclick="applyBrightnessPreset('bright')">🌤️ ساطعة (واضحة)</button>
+                            <button type="button" class="btn-brightness-mode" id="bm-normal" onclick="applyBrightnessPreset('normal')">⛅ متوازنة</button>
+                            <button type="button" class="btn-brightness-mode" id="bm-dim" onclick="applyBrightnessPreset('dim')">🌙 ليلية هادئة</button>
+                        </div>
+
+                        <!-- سلايدر تفتيح درجة سطوع الصورة -->
+                        <div style="margin-top: 14px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                <label style="margin:0; font-size:13px;">تفتيح سطوع الصورة (Brightness)</label>
+                                <span id="disp-val-brightness" style="color:#F59E0B; font-weight:bold; font-size:14px;">120%</span>
+                            </div>
+                            <input type="range" id="slider-bg-brightness" min="50" max="200" step="5" value="120" class="form-range-slider" oninput="onBgBrightnessChange(this.value)">
+                            <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
+                                <span>داكن 50%</span>
+                                <span>عادي 100%</span>
+                                <span>ساطع ومنير 200%</span>
+                            </div>
+                        </div>
+
+                        <!-- سلايدر إزالة التعتيم لتكون الصورة ساطعة كلياً -->
+                        <div style="margin-top: 14px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                <label style="margin:0; font-size:13px;">مستوى التعتيم (تقليله يجعل الصورة ساطعة كلياً)</label>
+                                <span id="disp-val-overlay" style="color:#38BDF8; font-weight:bold; font-size:14px;">ساطع (25%)</span>
+                            </div>
+                            <input type="range" id="slider-bg-overlay" min="0" max="85" step="5" value="25" class="form-range-slider" oninput="onBgOverlayChange(this.value)">
+                            <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
+                                <span>0% ساطعة كلياً بدون أي تعتيم</span>
+                                <span>متوسط 40%</span>
+                                <span>معتم 85%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. إعدادات الصوت -->
+            <!-- 5. تخصيص ألوان وخطوط الصناديق والساعة (Full Customization requested by user) -->
             <div class="drawer-accordion">
-                <div class="drawer-acc-header" onclick="toggleAcc(this)">
-                    <span>إعدادات الصوت والأذان</span>
+                <div class="drawer-acc-header" style="color: #38BDF8;" onclick="toggleAcc(this)">
+                    <span>🎨 تخصيص ألوان الصناديق والساعة والخطوط</span>
                     <span>▼</span>
                 </div>
-                <div class="drawer-acc-body">
+                <div class="drawer-acc-body expanded">
+                    <!-- أنماط ألوان جاهزة سريعة -->
+                    <div style="margin-bottom: 12px;">
+                        <span style="font-size: 12px; color: #94A3B8; display:block; margin-bottom: 6px;">أنماط ألوان جاهزة للاختيار السريع:</span>
+                        <div class="theme-presets-row">
+                            <button type="button" class="btn-theme-preset" style="background: #1e1b10; border-color: #c5a038;" onclick="applyPresetTheme('gold')">🌟 ذهبي ملكي</button>
+                            <button type="button" class="btn-theme-preset" style="background: #0f172a; border-color: #38bdf8;" onclick="applyPresetTheme('blue')">🔷 أزرق نيلي</button>
+                            <button type="button" class="btn-theme-preset" style="background: #062817; border-color: #34d399;" onclick="applyPresetTheme('green')">🟢 أخضر زمردي</button>
+                            <button type="button" class="btn-theme-preset" style="background: #18181b; border-color: #e4e4e7;" onclick="applyPresetTheme('silver')">⚪ فضي بلاتيني</button>
+                        </div>
+                    </div>
+
+                    <!-- القسم الأول: خط اسم المسجد في أعلى الشاشة -->
+                    <div class="color-group-subtitle">🕌 خط اسم المسجد في أعلى الشاشة:</div>
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">لون خط اسم المسجد</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-mosqueNameColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-mosqueNameColor" value="#c5a038" onchange="onThemeColorChange('mosqueNameColor', this.value)">
+                        </div>
+                    </div>
+
+                    <!-- القسم الثاني: صندوق الساعة الرئيسي والتاريخ -->
+                    <div class="color-group-subtitle">⏰ صندوق الساعة الرئيسي والتاريخ:</div>
+                    
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خلفية صندوق الساعة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-clockBoxBg">#0e150f</span>
+                            <input type="color" class="color-input-bubble" id="col-clockBoxBg" onchange="onThemeColorChange('clockBoxBg', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">إطار صندوق الساعة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-clockBoxBorder">#8e7428</span>
+                            <input type="color" class="color-input-bubble" id="col-clockBoxBorder" onchange="onThemeColorChange('clockBoxBorder', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط أرقام الساعة (ساعات/دقائق)</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-clockDigitsColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-clockDigitsColor" onchange="onThemeColorChange('clockDigitsColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط الثواني ومؤشر AM/PM</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-clockSecColor">#dfb743</span>
+                            <input type="color" class="color-input-bubble" id="col-clockSecColor" onchange="onThemeColorChange('clockSecColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط التاريخ الهجري والميلادي</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-clockDateColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-clockDateColor" onchange="onThemeColorChange('clockDateColor', this.value)">
+                        </div>
+                    </div>
+
+                    <!-- القسم الثاني: قسم باقي للصلاة القادمة -->
+                    <div class="color-group-subtitle">⏳ قسم باقي للصلاة القادمة:</div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط عنوان "باقي للصلاة القادمة" والوقت</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-nextTitleColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-nextTitleColor" onchange="onThemeColorChange('nextTitleColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط اسم الصلاة القادمة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-nextNameColor">#dfb743</span>
+                            <input type="color" class="color-input-bubble" id="col-nextNameColor" onchange="onThemeColorChange('nextNameColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط عداد الوقت المتبقي</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-nextTimerColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-nextTimerColor" onchange="onThemeColorChange('nextTimerColor', this.value)">
+                        </div>
+                    </div>
+
+                    <!-- القسم الثالث: ألوان أرقام كل صلاة لوحدها -->
+                    <div class="color-group-subtitle">🔢 ألوان أرقام الصلوات (كل صلاة لوحدها):</div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت صلاة الفجر</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-fajrTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-fajrTimeColor" onchange="onThemeColorChange('fajrTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت الشروق</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-shuruqTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-shuruqTimeColor" onchange="onThemeColorChange('shuruqTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت صلاة الظهر</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-dhuhrTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-dhuhrTimeColor" onchange="onThemeColorChange('dhuhrTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت صلاة العصر</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-asrTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-asrTimeColor" onchange="onThemeColorChange('asrTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت صلاة المغرب</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-maghribTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-maghribTimeColor" onchange="onThemeColorChange('maghribTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">رقم وقت صلاة العشاء</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-ishaTimeColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-ishaTimeColor" onchange="onThemeColorChange('ishaTimeColor', this.value)">
+                        </div>
+                    </div>
+
+                    <!-- القسم الرابع: ألوان صناديق الصلوات وصلاة الجمعة -->
+                    <div class="color-group-subtitle">📦 ألوان الصناديق (الصلوات وصلاة الجمعة):</div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خلفية صناديق الصلوات</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-cardsBg">#0e150f</span>
+                            <input type="color" class="color-input-bubble" id="col-cardsBg" onchange="onThemeColorChange('cardsBg', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">إطار صناديق الصلوات</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-cardsBorder">#8e7428</span>
+                            <input type="color" class="color-input-bubble" id="col-cardsBorder" onchange="onThemeColorChange('cardsBorder', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط أسماء الصلوات</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-cardsNameColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-cardsNameColor" onchange="onThemeColorChange('cardsNameColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط وقت الإقامة (في البطاقات)</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-iqamaTextColor">#fbbf24</span>
+                            <input type="color" class="color-input-bubble" id="col-iqamaTextColor" onchange="onThemeColorChange('iqamaTextColor', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خلفية صندوق صلاة الجمعة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-jummahBg">#0e150f</span>
+                            <input type="color" class="color-input-bubble" id="col-jummahBg" onchange="onThemeColorChange('jummahBg', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">إطار صندوق صلاة الجمعة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-jummahBorder">#8e7428</span>
+                            <input type="color" class="color-input-bubble" id="col-jummahBorder" onchange="onThemeColorChange('jummahBorder', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="color-picker-item">
+                        <span class="color-picker-label">خط صندوق صلاة الجمعة</span>
+                        <div class="color-picker-control">
+                            <span class="color-hex-tag" id="tag-jummahTextColor">#c5a038</span>
+                            <input type="color" class="color-input-bubble" id="col-jummahTextColor" onchange="onThemeColorChange('jummahTextColor', this.value)">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-clear-img" style="color: #F87171; font-size: 13px; margin-top: 10px;" onclick="resetThemeColors()">↺ استعادة جميع الألوان الافتراضية</button>
+                </div>
+            </div>
+
+            <!-- 6. إعدادات الصوت ورفع ملفات الأذان والتنبيهات -->
+            <div class="drawer-accordion">
+                <div class="drawer-acc-header" style="color: #38BDF8;" onclick="toggleAcc(this)">
+                    <span>🔊 الصوتيات ورفع ملفات الأذان والتنبيهات</span>
+                    <span>▼</span>
+                </div>
+                <div class="drawer-acc-body expanded">
                     <div class="form-group">
-                        <label>تشغيل صوت الأذان الرقمي عند دخول الوقت</label>
-                        <select id="cfg-sound-enabled" class="form-select">
-                            <option value="1">مفعّل (تكبيرات ونغمة تنبيه)</option>
-                            <option value="0">صامت (بدون صوت)</option>
+                        <label>تشغيل الصوت العام</label>
+                        <select id="cfg-sound-enabled" class="form-select" onchange="onSoundEnabledChange(this.value)">
+                            <option value="1">🔊 مفعّل (تشغيل الأذان والتنبيهات الصوتية)</option>
+                            <option value="0">🔇 صامت (كتم جميع الأصوات)</option>
                         </select>
                     </div>
-                    <button type="button" class="btn-test-sequence" style="background:#4B5563;" onclick="playTestAdhanSound()">🔊 تجربة صوت الأذان</button>
+
+                    <!-- التحكم بمستوى الصوت -->
+                    <div class="form-group" style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid #334155;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                            <label style="margin:0; font-size:13px; color:#F59E0B; font-weight:bold;">🎚️ مستوى الصوت (Volume):</label>
+                            <span id="disp-val-volume" style="color:#38BDF8; font-weight:bold; font-size:14px;">100%</span>
+                        </div>
+                        <input type="range" id="slider-audio-volume" min="0" max="100" step="5" value="100" class="form-range-slider" oninput="onAudioVolumeChange(this.value)">
+                        <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
+                            <span>0% (كتم)</span>
+                            <span>50%</span>
+                            <span>100% (أعلى صوت)</span>
+                        </div>
+                    </div>
+
+                    <!-- 1. خانة رفع صوت أذان الفجر المخصص -->
+                    <div class="audio-upload-card" style="border: 1px solid #d97706; background: rgba(69, 26, 3, 0.35); margin-bottom: 12px;">
+                        <label style="color: #FBBF24; font-weight: 700; font-size: 14px; display:flex; align-items:center; gap:6px;">
+                            <span>🌅 ملف صوت أذان الفجر المخصص (خاص بصلاة الفجر فقط):</span>
+                        </label>
+                        <p style="margin: 0; font-size: 12px; color: #FDE68A;">
+                            هذا الصوت مخصص لصلاة الفجر فقط مع التثويب («الصلاة خيرٌ من النوم»). ينطلق تلقائياً عند دخول وقت الفجر، بينما الصلوات الأخرى ينطلق لها الأذان العام أدناه.
+                        </p>
+                        <input type="file" id="cfg-main-fajr-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'adhan_fajr')">
+                        
+                        <div class="audio-file-badge" id="badge-main-fajr-audio" style="border-color: #d97706;">
+                            <span id="name-main-fajr-audio" style="color: #94A3B8;">لم يتم رفع ملف أذان مخصص للفجر (يتم استخدام الصوت الافتراضي)</span>
+                        </div>
+
+                        <div class="audio-btn-row">
+                            <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-main-fajr" onclick="testAudioPlay('adhan_fajr')">▶ تجربة أذان الفجر</button>
+                            <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-main-fajr" onclick="stopAllSounds()">⏹ إيقاف</button>
+                            <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-main-fajr" onclick="removeAudioFile('adhan_fajr')">🗑️ حذف صوت الفجر</button>
+                        </div>
+
+                        <div style="margin-top: 6px;">
+                            <label style="font-size: 12px; color: #CBD5E1;">مصدر أذان الفجر:</label>
+                            <select id="cfg-main-fajr-source" class="form-select" onchange="onFajrSourceChange(this.value)">
+                                <option value="custom">📁 ملف مخصص مرفوع من جهازي للفجر</option>
+                                <option value="preset_makkah">🕋 أذان الفجر بالحرم المكي (الصلاة خير من النوم)</option>
+                                <option value="preset_madinah">🕌 أذان الفجر بالمسجد النبوي الشريف</option>
+                                <option value="same_as_adhan">🔄 نفس صوت الأذان العام لباقي الصلوات</option>
+                                <option value="chime">🔔 تكبيرات ونغمة أذان الفجر</option>
+                                <option value="silent">🔕 صامت لصلاة الفجر</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 2. خانة رفع صوت الأذان العام (لباقي الصلوات) -->
+                    <div class="audio-upload-card">
+                        <label style="color: #38BDF8; font-weight: 700; font-size: 14px;">
+                            🕌 ملف صوت الأذان العام (لباقي الصلوات: الظهر، العصر، المغرب، العشاء):
+                        </label>
+                        <p style="margin: 0; font-size: 12px; color: #94A3B8;">
+                            ارفع ملف الأذان بصوت المؤذن المفضل لديك ليتم تشغيله تلقائياً عند دخول وقت الصلوات الأخرى (الظهر، العصر، المغرب، العشاء).
+                        </p>
+                        <input type="file" id="cfg-main-adhan-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'adhan')">
+                        
+                        <div class="audio-file-badge" id="badge-main-adhan-audio">
+                            <span id="name-main-adhan-audio" style="color: #94A3B8;">لم يتم رفع ملف صوت حتى الآن</span>
+                        </div>
+
+                        <div class="audio-btn-row">
+                            <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-main-adhan" onclick="testAudioPlay('adhan')">▶ تجربة الأذان العام</button>
+                            <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-main-adhan" onclick="stopAllSounds()">⏹ إيقاف</button>
+                            <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-main-adhan" onclick="removeAudioFile('adhan')">🗑️ حذف الصوت المرفوع</button>
+                        </div>
+
+                        <!-- خيارات الأذان الجاهزة -->
+                        <div style="margin-top: 6px;">
+                            <label style="font-size: 12px; color: #CBD5E1;">أو اختر من أصوات الأذان العام الجاهزة:</label>
+                            <select id="cfg-main-adhan-source" class="form-select" onchange="onAdhanSourceChange(this.value)">
+                                <option value="custom">📁 ملف مخصص مرفوع من جهازي</option>
+                                <option value="preset_makkah">🕋 أذان الحرم المكي الشريف</option>
+                                <option value="preset_madinah">🕌 أذان المسجد النبوي الشريف</option>
+                                <option value="chime">🔔 نغمة تنبيه وتكبيرات إسلامية</option>
+                                <option value="silent">🔕 صامت بدون صوت</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- خانة رفع صوت تنبيه الإقامة -->
+                    <div class="audio-upload-card" style="border-color: #38BDF8; margin-top: 12px;">
+                        <label style="color: #38BDF8; font-weight: 700; font-size: 14px;">
+                            🔔 خانة رفع ملف صوت تنبيه الإقامة:
+                        </label>
+                        <input type="file" id="cfg-main-iqama-audio" accept="audio/*" class="form-input-text" onchange="handleAudioUpload(this, 'iqama')">
+                        
+                        <div class="audio-file-badge" id="badge-main-iqama-audio">
+                            <span id="name-main-iqama-audio" style="color: #94A3B8;">نغمة تنبيه الإقامة الافتراضية</span>
+                        </div>
+
+                        <div class="audio-btn-row">
+                            <button type="button" class="btn-audio-action btn-audio-play" id="btn-play-main-iqama" onclick="testAudioPlay('iqama')">▶ تجربة صوت الإقامة</button>
+                            <button type="button" class="btn-audio-action btn-audio-stop" id="btn-stop-main-iqama" onclick="stopAllSounds()">⏹ إيقاف</button>
+                            <button type="button" class="btn-audio-action btn-audio-delete" id="btn-del-main-iqama" onclick="removeAudioFile('iqama')">🗑️ حذف</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1138,6 +2080,105 @@
             "«سُبْحَانَ اللَّهِ (33)، وَالْحَمْدُ لِلَّهِ (33)، وَاللَّهُ أَكْبَرُ (33)»<br>تمام المائة: «لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»"
         ];
 
+        const THEME_PRESETS = {
+            gold: {
+                mosqueNameColor: "#c5a038",
+                clockBoxBg: "#0e150f",
+                clockBoxBorder: "#8e7428",
+                clockDigitsColor: "#c5a038",
+                clockSecColor: "#dfb743",
+                clockDateColor: "#c5a038",
+                nextTitleColor: "#c5a038",
+                nextNameColor: "#dfb743",
+                nextTimerColor: "#c5a038",
+                fajrTimeColor: "#c5a038",
+                shuruqTimeColor: "#c5a038",
+                dhuhrTimeColor: "#c5a038",
+                asrTimeColor: "#c5a038",
+                maghribTimeColor: "#c5a038",
+                ishaTimeColor: "#c5a038",
+                cardsBg: "#0e150f",
+                cardsBorder: "#8e7428",
+                cardsNameColor: "#c5a038",
+                jummahBg: "#0e150f",
+                jummahBorder: "#8e7428",
+                jummahTextColor: "#c5a038",
+                iqamaTextColor: "#fbbf24"
+            },
+            blue: {
+                mosqueNameColor: "#38bdf8",
+                clockBoxBg: "#0b1528",
+                clockBoxBorder: "#1e3a8a",
+                clockDigitsColor: "#38bdf8",
+                clockSecColor: "#7dd3fc",
+                clockDateColor: "#93c5fd",
+                nextTitleColor: "#38bdf8",
+                nextNameColor: "#67e8f9",
+                nextTimerColor: "#38bdf8",
+                fajrTimeColor: "#38bdf8",
+                shuruqTimeColor: "#38bdf8",
+                dhuhrTimeColor: "#38bdf8",
+                asrTimeColor: "#38bdf8",
+                maghribTimeColor: "#38bdf8",
+                ishaTimeColor: "#38bdf8",
+                cardsBg: "#0b1528",
+                cardsBorder: "#1e3a8a",
+                cardsNameColor: "#38bdf8",
+                jummahBg: "#0b1528",
+                jummahBorder: "#1e3a8a",
+                jummahTextColor: "#38bdf8",
+                iqamaTextColor: "#38bdf8"
+            },
+            green: {
+                mosqueNameColor: "#34d399",
+                clockBoxBg: "#051f12",
+                clockBoxBorder: "#047857",
+                clockDigitsColor: "#34d399",
+                clockSecColor: "#6ee7b7",
+                clockDateColor: "#a7f3d0",
+                nextTitleColor: "#34d399",
+                nextNameColor: "#10b981",
+                nextTimerColor: "#34d399",
+                fajrTimeColor: "#34d399",
+                shuruqTimeColor: "#34d399",
+                dhuhrTimeColor: "#34d399",
+                asrTimeColor: "#34d399",
+                maghribTimeColor: "#34d399",
+                ishaTimeColor: "#34d399",
+                cardsBg: "#051f12",
+                cardsBorder: "#047857",
+                cardsNameColor: "#34d399",
+                jummahBg: "#051f12",
+                jummahBorder: "#047857",
+                jummahTextColor: "#34d399",
+                iqamaTextColor: "#34d399"
+            },
+            silver: {
+                mosqueNameColor: "#ffffff",
+                clockBoxBg: "#18181b",
+                clockBoxBorder: "#52525b",
+                clockDigitsColor: "#f4f4f5",
+                clockSecColor: "#e4e4e7",
+                clockDateColor: "#d4d4d8",
+                nextTitleColor: "#e4e4e7",
+                nextNameColor: "#ffffff",
+                nextTimerColor: "#e4e4e7",
+                fajrTimeColor: "#f4f4f5",
+                shuruqTimeColor: "#f4f4f5",
+                dhuhrTimeColor: "#f4f4f5",
+                asrTimeColor: "#f4f4f5",
+                maghribTimeColor: "#f4f4f5",
+                ishaTimeColor: "#f4f4f5",
+                cardsBg: "#18181b",
+                cardsBorder: "#52525b",
+                cardsNameColor: "#e4e4e7",
+                jummahBg: "#18181b",
+                jummahBorder: "#52525b",
+                jummahTextColor: "#f4f4f5",
+                iqamaTextColor: "#f4f4f5"
+            }
+        };
+
         let state = {
             mosqueName: "مصلى شارع بسمان",
             country: "الأردن",
@@ -1147,7 +2188,9 @@
             dst: 0,
             jummahTime: "12:30",
             iqamaTimes: { fajr: 20, dhuhr: 15, asr: 15, maghrib: 10, isha: 15 },
-            prayerOffsets: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 },
+            prayerOffsets: { fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 },
+            themeColors: Object.assign({}, THEME_PRESETS.gold),
+            iqamaFontSize: 17,
             stages: {
                 adhan: { min: 3, sec: 14, pos: "top", img: null },
                 iqama: { img: null },
@@ -1155,8 +2198,265 @@
                 azkar: { min: 2, sec: 0, stepSec: 15, img: null }
             },
             mainBgImg: null,
+            bgBrightness: 120,
+            bgOverlayOpacity: 25,
+            bgMode: 'bright',
             soundEnabled: true
         };
+
+        const BRIGHTNESS_PRESETS = {
+            super: { brightness: 150, overlay: 8, name: "ساطع جداً ☀️" },
+            bright: { brightness: 125, overlay: 22, name: "ساطع 🌤️" },
+            normal: { brightness: 100, overlay: 45, name: "متوازن ⛅" },
+            dim: { brightness: 80, overlay: 70, name: "ليلي هادئ 🌙" }
+        };
+
+        function applyBgSettings() {
+            const bgLayer = document.getElementById('main-bg-layer');
+            const bgOverlay = document.querySelector('.bg-overlay');
+            const brightness = state.bgBrightness !== undefined ? state.bgBrightness : 120;
+            const overlay = state.bgOverlayOpacity !== undefined ? state.bgOverlayOpacity : 25;
+
+            if (bgLayer) {
+                bgLayer.style.filter = `brightness(${brightness}%) contrast(105%)`;
+                if (state.mainBgImg) {
+                    bgLayer.style.backgroundImage = `url(${state.mainBgImg})`;
+                } else {
+                    bgLayer.style.backgroundImage = "url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1920&q=80')";
+                }
+            }
+
+            if (bgOverlay) {
+                bgOverlay.style.background = `rgba(6, 11, 8, ${overlay / 100})`;
+                bgOverlay.style.backdropFilter = overlay < 15 ? 'none' : 'blur(1.5px)';
+            }
+
+            // Sync drawer inputs if they exist
+            const sliderBri = document.getElementById('slider-bg-brightness');
+            const sliderOvr = document.getElementById('slider-bg-overlay');
+            const dispBri = document.getElementById('disp-val-brightness');
+            const dispOvr = document.getElementById('disp-val-overlay');
+
+            if (sliderBri) sliderBri.value = brightness;
+            if (sliderOvr) sliderOvr.value = overlay;
+            if (dispBri) dispBri.textContent = `${brightness}%`;
+            if (dispOvr) {
+                if (overlay <= 10) dispOvr.textContent = `أقصى تفتيح (${overlay}%)`;
+                else if (overlay <= 30) dispOvr.textContent = `ساطع (${overlay}%)`;
+                else if (overlay <= 55) dispOvr.textContent = `متوسط (${overlay}%)`;
+                else dispOvr.textContent = `معتم (${overlay}%)`;
+            }
+
+            // Highlight active mode button
+            document.querySelectorAll('.btn-brightness-mode').forEach(b => b.classList.remove('active'));
+            if (state.bgMode) {
+                const activeBtn = document.getElementById(`bm-${state.bgMode}`);
+                if (activeBtn) activeBtn.classList.add('active');
+            }
+        }
+
+        function onBgBrightnessChange(val) {
+            state.bgBrightness = parseInt(val, 10);
+            state.bgMode = 'custom';
+            applyBgSettings();
+            saveState();
+        }
+
+        function onBgOverlayChange(val) {
+            state.bgOverlayOpacity = parseInt(val, 10);
+            state.bgMode = 'custom';
+            applyBgSettings();
+            saveState();
+        }
+
+        function applyBrightnessPreset(mode) {
+            const preset = BRIGHTNESS_PRESETS[mode];
+            if (!preset) return;
+            state.bgBrightness = preset.brightness;
+            state.bgOverlayOpacity = preset.overlay;
+            state.bgMode = mode;
+            applyBgSettings();
+            saveState();
+            showToast(`تم تفعيل وضع السطوع: ${preset.name}`);
+        }
+
+        function cycleBrightnessMode() {
+            const order = ['super', 'bright', 'normal', 'dim'];
+            let currIdx = order.indexOf(state.bgMode);
+            if (currIdx === -1) currIdx = 1;
+            const nextIdx = (currIdx + 1) % order.length;
+            applyBrightnessPreset(order[nextIdx]);
+        }
+
+        function selectPresetBg(url) {
+            state.mainBgImg = url;
+            renderPreview('prev-main-bg-box', url);
+            applyBgSettings();
+            saveState();
+            showToast("تم تغيير خلفية الشاشة بنجاح 🖼️");
+        }
+
+        function showToast(text) {
+            let toast = document.getElementById('app-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'app-toast';
+                toast.className = 'app-toast-message';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = text;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Apply dynamic colors to CSS variables immediately
+        function applyThemeColors() {
+            if (!state.themeColors) return;
+            const r = document.documentElement.style;
+            const tc = state.themeColors;
+
+            // Mosque Name Color
+            if (tc.mosqueNameColor) {
+                r.setProperty('--mosque-name-color', tc.mosqueNameColor);
+            }
+
+            // Clock Box
+            if (tc.clockBoxBg) r.setProperty('--clock-box-bg', tc.clockBoxBg);
+            if (tc.clockBoxBorder) r.setProperty('--clock-box-border', tc.clockBoxBorder);
+            if (tc.clockDigitsColor) r.setProperty('--clock-digits-color', tc.clockDigitsColor);
+            if (tc.clockSecColor) r.setProperty('--clock-sec-color', tc.clockSecColor);
+            if (tc.clockDateColor) r.setProperty('--clock-date-color', tc.clockDateColor);
+
+            // Next Prayer Section
+            if (tc.nextTitleColor) r.setProperty('--next-title-color', tc.nextTitleColor);
+            if (tc.nextNameColor) r.setProperty('--next-name-color', tc.nextNameColor);
+            if (tc.nextTimerColor) r.setProperty('--next-timer-color', tc.nextTimerColor);
+
+            // Prayer numbers individual (كل صلاة لوحدها)
+            if (tc.fajrTimeColor) r.setProperty('--fajr-num-color', tc.fajrTimeColor);
+            if (tc.shuruqTimeColor) r.setProperty('--shuruq-num-color', tc.shuruqTimeColor);
+            if (tc.dhuhrTimeColor) r.setProperty('--dhuhr-num-color', tc.dhuhrTimeColor);
+            if (tc.asrTimeColor) r.setProperty('--asr-num-color', tc.asrTimeColor);
+            if (tc.maghribTimeColor) r.setProperty('--maghrib-num-color', tc.maghribTimeColor);
+            if (tc.ishaTimeColor) r.setProperty('--isha-num-color', tc.ishaTimeColor);
+
+            // Cards & Friday Box
+            if (tc.cardsBg) r.setProperty('--cards-bg', tc.cardsBg);
+            if (tc.cardsBorder) r.setProperty('--cards-border', tc.cardsBorder);
+            if (tc.cardsNameColor) r.setProperty('--cards-name-color', tc.cardsNameColor);
+            if (tc.jummahBg) r.setProperty('--jummah-box-bg', tc.jummahBg);
+            if (tc.jummahBorder) r.setProperty('--jummah-box-border', tc.jummahBorder);
+            if (tc.jummahTextColor) r.setProperty('--jummah-text-color', tc.jummahTextColor);
+            if (tc.iqamaTextColor) r.setProperty('--cards-iqama-color', tc.iqamaTextColor);
+            const iqamaSz = state.iqamaFontSize || 17;
+            r.setProperty('--iqama-font-size', `${iqamaSz}px`);
+        }
+
+        function changeIqamaFontSize(delta) {
+            if (!state.iqamaFontSize) state.iqamaFontSize = 17;
+            state.iqamaFontSize = Math.min(32, Math.max(12, state.iqamaFontSize + delta));
+            applyIqamaStyle();
+            saveState();
+        }
+
+        function onIqamaColorChange(colorVal) {
+            if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+            state.themeColors.iqamaTextColor = colorVal;
+            applyIqamaStyle();
+            saveState();
+        }
+
+        function applyIqamaStyle() {
+            const size = state.iqamaFontSize || 17;
+            const color = (state.themeColors && state.themeColors.iqamaTextColor) || "#fbbf24";
+            document.documentElement.style.setProperty('--iqama-font-size', `${size}px`);
+            document.documentElement.style.setProperty('--cards-iqama-color', color);
+
+            const dispSize = document.getElementById('disp-iqama-font-size');
+            if (dispSize) dispSize.textContent = `${size}px`;
+
+            const colInput = document.getElementById('cfg-iqama-font-color');
+            const colTag = document.getElementById('tag-iqama-font-color');
+            if (colInput) colInput.value = color;
+            if (colTag) {
+                colTag.textContent = color;
+                colTag.style.color = color;
+            }
+
+            const colCardInput = document.getElementById('col-iqamaTextColor');
+            const colCardTag = document.getElementById('tag-iqamaTextColor');
+            if (colCardInput) colCardInput.value = color;
+            if (colCardTag) {
+                colCardTag.textContent = color;
+                colCardTag.style.color = color;
+            }
+        }
+
+        function onThemeColorChange(key, value) {
+            if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+            state.themeColors[key] = value;
+            const tag = document.getElementById('tag-' + key);
+            if (tag) tag.textContent = value;
+            if (key === 'mosqueNameColor') {
+                const tagGen = document.getElementById('tag-mosqueNameColor-general');
+                const colGen = document.getElementById('col-mosqueNameColor-general');
+                const tagMain = document.getElementById('tag-mosqueNameColor');
+                const colMain = document.getElementById('col-mosqueNameColor');
+                if (tagGen) tagGen.textContent = value;
+                if (colGen) colGen.value = value;
+                if (tagMain) tagMain.textContent = value;
+                if (colMain) colMain.value = value;
+            }
+            if (key === 'iqamaTextColor') {
+                const cfgCol = document.getElementById('cfg-iqama-font-color');
+                const cfgTag = document.getElementById('tag-iqama-font-color');
+                if (cfgCol) cfgCol.value = value;
+                if (cfgTag) {
+                    cfgTag.textContent = value;
+                    cfgTag.style.color = value;
+                }
+            }
+            applyThemeColors();
+            saveState();
+        }
+
+        function applyPresetTheme(presetKey) {
+            const preset = THEME_PRESETS[presetKey];
+            if (!preset) return;
+            state.themeColors = Object.assign({}, preset);
+            syncThemeInputsFromState();
+            applyThemeColors();
+            applyIqamaStyle();
+            saveState();
+        }
+
+        function resetThemeColors() {
+            applyPresetTheme('gold');
+        }
+
+        function syncThemeInputsFromState() {
+            if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+            for (const [key, val] of Object.entries(state.themeColors)) {
+                const input = document.getElementById('col-' + key);
+                const tag = document.getElementById('tag-' + key);
+                if (input) input.value = val;
+                if (tag) tag.textContent = val;
+            }
+            if (state.themeColors.mosqueNameColor) {
+                const colGen = document.getElementById('col-mosqueNameColor-general');
+                const tagGen = document.getElementById('tag-mosqueNameColor-general');
+                if (colGen) colGen.value = state.themeColors.mosqueNameColor;
+                if (tagGen) tagGen.textContent = state.themeColors.mosqueNameColor;
+                const colMain = document.getElementById('col-mosqueNameColor');
+                const tagMain = document.getElementById('tag-mosqueNameColor');
+                if (colMain) colMain.value = state.themeColors.mosqueNameColor;
+                if (tagMain) tagMain.textContent = state.themeColors.mosqueNameColor;
+            }
+            applyIqamaStyle();
+        }
 
         // Load persisted state from localStorage
         function loadState() {
@@ -1165,8 +2465,39 @@
                 if (saved) {
                     const parsed = JSON.parse(saved);
                     state = Object.assign({}, state, parsed);
+                    if (parsed.prayerOffsets) {
+                        state.prayerOffsets = Object.assign({ fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 }, parsed.prayerOffsets);
+                    }
+                    if (parsed.themeColors) {
+                        state.themeColors = Object.assign({}, THEME_PRESETS.gold, parsed.themeColors);
+                        if (!state.themeColors.shuruqTimeColor) {
+                            state.themeColors.shuruqTimeColor = state.themeColors.fajrTimeColor || "#c5a038";
+                        }
+                        if (!state.themeColors.mosqueNameColor) {
+                            state.themeColors.mosqueNameColor = "#c5a038";
+                        }
+                        if (!state.themeColors.iqamaTextColor) {
+                            state.themeColors.iqamaTextColor = "#fbbf24";
+                        }
+                    }
                 }
             } catch (e) {}
+            if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+            if (!state.themeColors.mosqueNameColor) state.themeColors.mosqueNameColor = "#c5a038";
+            if (!state.themeColors.iqamaTextColor) state.themeColors.iqamaTextColor = "#fbbf24";
+            if (!state.iqamaFontSize) state.iqamaFontSize = 17;
+            if (state.soundEnabled === undefined) state.soundEnabled = true;
+            if (state.audioVolume === undefined) state.audioVolume = 100;
+            if (state.adhanAudioSource === undefined) state.adhanAudioSource = 'custom';
+            if (state.fajrAudioSource === undefined) state.fajrAudioSource = 'custom';
+            applyThemeColors();
+            applyIqamaStyle();
+            applyBgSettings();
+            applyBgSettings();
+            setTimeout(() => {
+                if (typeof updateSoundIconUI === 'function') updateSoundIconUI();
+                if (typeof updateAudioBadgesUI === 'function') updateAudioBadgesUI();
+            }, 100);
         }
 
         function saveState() {
@@ -1226,10 +2557,34 @@
             renderPreview('prev-main-bg-box', state.mainBgImg);
 
             renderPrayerOffsetControls();
+            syncThemeInputsFromState();
 
-            if (state.mainBgImg) {
-                document.getElementById('main-bg-layer').style.backgroundImage = `url(${state.mainBgImg})`;
-            }
+            // Sync audio controls
+            const soundEnabledEl = document.getElementById('cfg-sound-enabled');
+            if (soundEnabledEl) soundEnabledEl.value = state.soundEnabled ? "1" : "0";
+            const volSlider = document.getElementById('slider-audio-volume');
+            const volDisp = document.getElementById('disp-val-volume');
+            const vol = state.audioVolume !== undefined ? state.audioVolume : 100;
+            if (volSlider) volSlider.value = vol;
+            if (volDisp) volDisp.textContent = `${vol}%`;
+
+            const sAdhan = state.adhanAudioSource || 'custom';
+            const s1 = document.getElementById('cfg-stage-adhan-source');
+            const s2 = document.getElementById('cfg-main-adhan-source');
+            if (s1) s1.value = sAdhan;
+            if (s2) s2.value = sAdhan;
+
+            const sFajr = state.fajrAudioSource || 'custom';
+            const sf1 = document.getElementById('cfg-stage-fajr-source');
+            const sf2 = document.getElementById('cfg-main-fajr-source');
+            if (sf1) sf1.value = sFajr;
+            if (sf2) sf2.value = sFajr;
+
+            if (typeof updateAudioBadgesUI === 'function') updateAudioBadgesUI();
+            if (typeof updateSoundIconUI === 'function') updateSoundIconUI();
+
+            applyBgSettings();
+            applyIqamaStyle();
         }
 
         /* Manual Prayer Time Steppers (+ / -) */
@@ -1238,13 +2593,14 @@
             if (!container) return;
             const prayers = [
                 { id: "fajr", name: "صلاة الفجر" },
+                { id: "shuruq", name: "وقت الشروق" },
                 { id: "dhuhr", name: "صلاة الظهر" },
                 { id: "asr", name: "صلاة العصر" },
                 { id: "maghrib", name: "صلاة المغرب" },
                 { id: "isha", name: "صلاة العشاء" }
             ];
             if (!state.prayerOffsets) {
-                state.prayerOffsets = { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
+                state.prayerOffsets = { fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
             }
             container.innerHTML = "";
             prayers.forEach(p => {
@@ -1270,7 +2626,7 @@
 
         function changePrayerOffset(id, delta) {
             if (!state.prayerOffsets) {
-                state.prayerOffsets = { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
+                state.prayerOffsets = { fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
             }
             state.prayerOffsets[id] = (state.prayerOffsets[id] || 0) + delta;
             const offset = state.prayerOffsets[id];
@@ -1283,7 +2639,7 @@
         }
 
         function resetAllOffsets() {
-            state.prayerOffsets = { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
+            state.prayerOffsets = { fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
             saveState();
             renderPrayerOffsetControls();
             recalcAndRefresh();
@@ -1319,7 +2675,8 @@
                     if (stateKey === 'cfg_azkar_img_data') state.stages.azkar.img = dataUrl;
                     if (stateKey === 'cfg_main_bg_data') {
                         state.mainBgImg = dataUrl;
-                        document.getElementById('main-bg-layer').style.backgroundImage = `url(${dataUrl})`;
+                        applyBgSettings();
+                        showToast("تم تغيير خلفية الشاشة بنجاح 🖼️");
                     }
                     saveState();
                 };
@@ -1336,7 +2693,8 @@
             if (stateKey === 'cfg_azkar_img_data') state.stages.azkar.img = null;
             if (stateKey === 'cfg_main_bg_data') {
                 state.mainBgImg = null;
-                document.getElementById('main-bg-layer').style.backgroundImage = "url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1920&q=80')";
+                applyBgSettings();
+                showToast("تمت استعادة الخلفية الأصلية للمسجد");
             }
             saveState();
         }
@@ -1394,6 +2752,28 @@
             state.stages.azkar.stepSec = parseInt(document.getElementById('cfg-azkar-step').value) || 15;
 
             state.soundEnabled = document.getElementById('cfg-sound-enabled').value === "1";
+            const volSlider = document.getElementById('slider-audio-volume');
+            if (volSlider) state.audioVolume = parseInt(volSlider.value) || 100;
+            const srcEl = document.getElementById('cfg-main-adhan-source') || document.getElementById('cfg-stage-adhan-source');
+            if (srcEl) state.adhanAudioSource = srcEl.value;
+            const srcFajr = document.getElementById('cfg-main-fajr-source') || document.getElementById('cfg-stage-fajr-source');
+            if (srcFajr) state.fajrAudioSource = srcFajr.value;
+
+            if (typeof updateSoundIconUI === 'function') updateSoundIconUI();
+
+            const mColEl = document.getElementById('col-mosqueNameColor-general') || document.getElementById('col-mosqueNameColor');
+            if (mColEl && mColEl.value) {
+                if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+                state.themeColors.mosqueNameColor = mColEl.value;
+                applyThemeColors();
+            }
+
+            const iqamaColEl = document.getElementById('cfg-iqama-font-color');
+            if (iqamaColEl && iqamaColEl.value) {
+                if (!state.themeColors) state.themeColors = Object.assign({}, THEME_PRESETS.gold);
+                state.themeColors.iqamaTextColor = iqamaColEl.value;
+            }
+            applyIqamaStyle();
 
             document.getElementById('disp-mosque-name').textContent = state.mosqueName;
             document.getElementById('disp-jummah-val').textContent = state.jummahTime;
@@ -1439,12 +2819,13 @@
             };
 
             const fajrSolar = dhuhrSolar - sunAngleDiff(18.0);
+            const sunriseSolar = dhuhrSolar - sunAngleDiff(0.833);
             const maghribSolar = dhuhrSolar + sunAngleDiff(0.833);
             const asrAngle = -toDeg(Math.atan(1.0 / (1.0 + Math.tan(toRad(Math.abs(lat - decl))))));
             const asrSolar = dhuhrSolar + sunAngleDiff(asrAngle);
             const ishaSolar = dhuhrSolar + sunAngleDiff(17.0);
 
-            const offsets = state.prayerOffsets || { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
+            const offsets = state.prayerOffsets || { fajr: 0, shuruq: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
 
             const toDateObj = (hourDecimal, offsetMin = 0) => {
                 const res = new Date(date);
@@ -1454,11 +2835,12 @@
             };
 
             return [
-                { id: "fajr", name: "الفجر", time: toDateObj(fajrSolar, offsets.fajr || 0), iqamaMin: state.iqamaTimes.fajr },
-                { id: "dhuhr", name: "الظهر", time: toDateObj(dhuhrSolar, offsets.dhuhr || 0), iqamaMin: state.iqamaTimes.dhuhr },
-                { id: "asr", name: "العصر", time: toDateObj(asrSolar, offsets.asr || 0), iqamaMin: state.iqamaTimes.asr },
-                { id: "maghrib", name: "المغرب", time: toDateObj(maghribSolar, offsets.maghrib || 0), iqamaMin: state.iqamaTimes.maghrib },
-                { id: "isha", name: "العشاء", time: toDateObj(ishaSolar, offsets.isha || 0), iqamaMin: state.iqamaTimes.isha }
+                { id: "fajr", name: "الفجر", time: toDateObj(fajrSolar, offsets.fajr || 0), iqamaMin: state.iqamaTimes.fajr, isPrayer: true },
+                { id: "shuruq", name: "الشروق", time: toDateObj(sunriseSolar, offsets.shuruq || 0), iqamaMin: 0, isPrayer: false },
+                { id: "dhuhr", name: "الظهر", time: toDateObj(dhuhrSolar, offsets.dhuhr || 0), iqamaMin: state.iqamaTimes.dhuhr, isPrayer: true },
+                { id: "asr", name: "العصر", time: toDateObj(asrSolar, offsets.asr || 0), iqamaMin: state.iqamaTimes.asr, isPrayer: true },
+                { id: "maghrib", name: "المغرب", time: toDateObj(maghribSolar, offsets.maghrib || 0), iqamaMin: state.iqamaTimes.maghrib, isPrayer: true },
+                { id: "isha", name: "العشاء", time: toDateObj(ishaSolar, offsets.isha || 0), iqamaMin: state.iqamaTimes.isha, isPrayer: true }
             ];
         }
 
@@ -1467,6 +2849,14 @@
             const m = String(d.getMinutes()).padStart(2, '0');
             h = h % 12 || 12;
             return `${h}:${m}`;
+        }
+
+        function formatHM12WithPeriod(d) {
+            let h = d.getHours();
+            const m = String(d.getMinutes()).padStart(2, '0');
+            const period = h >= 12 ? 'م' : 'ص';
+            h = h % 12 || 12;
+            return `${h}:${m} ${period}`;
         }
 
         function getHijriArabic(d) {
@@ -1495,28 +2885,477 @@
             return `${days[d.getDay()]}، ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
         }
 
-        /* Web Audio Chime */
+        /* =========================================================================
+           INDEXED-DB & AUDIO STORAGE ENGINE (Supports custom uploaded MP3/WAV files)
+        ========================================================================= */
+        const AudioStore = {
+            dbPromise: null,
+            getDB() {
+                if (!this.dbPromise) {
+                    this.dbPromise = new Promise((resolve) => {
+                        try {
+                            if (!window.indexedDB) { resolve(null); return; }
+                            const req = indexedDB.open('AlMoazinAudioDB', 1);
+                            req.onupgradeneeded = (e) => {
+                                const db = e.target.result;
+                                if (!db.objectStoreNames.contains('audio_files')) {
+                                    db.createObjectStore('audio_files');
+                                }
+                            };
+                            req.onsuccess = () => resolve(req.result);
+                            req.onerror = () => resolve(null);
+                        } catch (e) {
+                            resolve(null);
+                        }
+                    });
+                }
+                return this.dbPromise;
+            },
+            async save(key, dataUrl, fileName, fileSize) {
+                const db = await this.getDB();
+                if (db) {
+                    try {
+                        await new Promise((resolve, reject) => {
+                            const tx = db.transaction('audio_files', 'readwrite');
+                            tx.objectStore('audio_files').put({ data: dataUrl, name: fileName, size: fileSize, time: Date.now() }, key);
+                            tx.oncomplete = () => resolve(true);
+                            tx.onerror = () => reject(tx.error);
+                        });
+                        return true;
+                    } catch (e) {}
+                }
+                try {
+                    localStorage.setItem('almoazin_audio_' + key, dataUrl);
+                    localStorage.setItem('almoazin_audioname_' + key, fileName);
+                } catch (e) {}
+                return true;
+            },
+            async get(key) {
+                const db = await this.getDB();
+                if (db) {
+                    try {
+                        const item = await new Promise((resolve) => {
+                            const tx = db.transaction('audio_files', 'readonly');
+                            const req = tx.objectStore('audio_files').get(key);
+                            req.onsuccess = () => resolve(req.result || null);
+                            req.onerror = () => resolve(null);
+                        });
+                        if (item && item.data) return item;
+                    } catch (e) {}
+                }
+                try {
+                    const fallback = localStorage.getItem('almoazin_audio_' + key);
+                    const name = localStorage.getItem('almoazin_audioname_' + key) || 'ملف صوت محفوظ';
+                    if (fallback) return { data: fallback, name: name };
+                } catch (e) {}
+                return null;
+            },
+            async remove(key) {
+                const db = await this.getDB();
+                if (db) {
+                    try {
+                        await new Promise((resolve) => {
+                            const tx = db.transaction('audio_files', 'readwrite');
+                            tx.objectStore('audio_files').delete(key);
+                            tx.oncomplete = () => resolve(true);
+                            tx.onerror = () => resolve(false);
+                        });
+                    } catch (e) {}
+                }
+                try {
+                    localStorage.removeItem('almoazin_audio_' + key);
+                    localStorage.removeItem('almoazin_audioname_' + key);
+                } catch (e) {}
+            }
+        };
+
+        const PRESET_ADHAN_URLS = {
+            preset_makkah: "https://download.quranicaudio.com/misc/athan/makkah.mp3",
+            preset_madinah: "https://download.quranicaudio.com/misc/athan/madinah.mp3"
+        };
+
+        let activeHtmlAudio = null;
+        let activePlayingType = null;
+        let activeAudioNodes = [];
+        let activeAudioCtx = null;
+        let activeSoundTimeouts = [];
+
+        function updateAudioPlayButtonsUI(isPlaying, type = null) {
+            ['stage-adhan', 'stage-fajr', 'stage-iqama', 'main-adhan', 'main-fajr', 'main-iqama'].forEach(prefix => {
+                const btnPlay = document.getElementById('btn-play-' + prefix);
+                const btnStop = document.getElementById('btn-stop-' + prefix);
+                let matches = false;
+                if (type === 'adhan_fajr' || type === 'fajr') {
+                    matches = prefix.includes('fajr');
+                } else if (type === 'adhan') {
+                    matches = prefix.includes('adhan') && !prefix.includes('fajr');
+                } else if (type === 'iqama') {
+                    matches = prefix.includes('iqama');
+                }
+                if (btnPlay) btnPlay.style.display = (isPlaying && matches) ? 'none' : 'inline-flex';
+                if (btnStop) btnStop.style.display = (isPlaying && matches) ? 'inline-flex' : 'none';
+            });
+        }
+
+        async function updateAudioBadgesUI() {
+            // 1. Fajr Adhan badge
+            const fajrItem = await AudioStore.get('adhan_fajr');
+            const fajrName = fajrItem ? (fajrItem.name || 'ملف أذان الفجر المخصص') : null;
+            const fajrText = fajrName ? `✔ تم حفظ أذان الفجر: ${fajrName}` : 'لم يتم رفع ملف خاص بالفجر (يتم استخدام الصوت الافتراضي)';
+            const fajrColor = fajrName ? '#10B981' : '#94A3B8';
+
+            ['stage', 'main'].forEach(p => {
+                const nameEl = document.getElementById(`name-${p}-fajr-audio`);
+                const delBtn = document.getElementById(`btn-del-${p}-fajr`);
+                if (nameEl) {
+                    nameEl.textContent = fajrText;
+                    nameEl.style.color = fajrColor;
+                }
+                if (delBtn) {
+                    delBtn.style.display = fajrName ? 'inline-flex' : 'none';
+                }
+            });
+
+            // 2. General Adhan badge (for all other prayers)
+            const adhanItem = await AudioStore.get('adhan');
+            const adhanName = adhanItem ? (adhanItem.name || 'ملف أذان مخصص') : null;
+            const adhanText = adhanName ? `✔ تم حفظ الأذان العام: ${adhanName}` : 'لم يتم رفع ملف للأذان العام (يتم استخدام الصوت الافتراضي)';
+            const adhanColor = adhanName ? '#10B981' : '#94A3B8';
+
+            ['stage', 'main'].forEach(p => {
+                const nameEl = document.getElementById(`name-${p}-adhan-audio`);
+                const delBtn = document.getElementById(`btn-del-${p}-adhan`);
+                if (nameEl) {
+                    nameEl.textContent = adhanText;
+                    nameEl.style.color = adhanColor;
+                }
+                if (delBtn) {
+                    delBtn.style.display = adhanName ? 'inline-flex' : 'none';
+                }
+            });
+
+            // 3. Iqama badge
+            const iqamaItem = await AudioStore.get('iqama');
+            const iqamaName = iqamaItem ? (iqamaItem.name || 'ملف تنبيه إقامة') : null;
+            const iqamaText = iqamaName ? `✔ تم حفظ صوت الإقامة: ${iqamaName}` : 'نغمة تنبيه الإقامة الافتراضية';
+            const iqamaColor = iqamaName ? '#38BDF8' : '#94A3B8';
+
+            ['stage', 'main'].forEach(p => {
+                const nameEl = document.getElementById(`name-${p}-iqama-audio`);
+                const delBtn = document.getElementById(`btn-del-${p}-iqama`);
+                if (nameEl) {
+                    nameEl.textContent = iqamaText;
+                    nameEl.style.color = iqamaColor;
+                }
+                if (delBtn) {
+                    delBtn.style.display = iqamaName ? 'inline-flex' : 'none';
+                }
+            });
+        }
+
+        async function handleAudioUpload(inputEl, type) {
+            if (!inputEl.files || !inputEl.files[0]) return;
+            const file = inputEl.files[0];
+            const fileName = file.name;
+            const fileSizeStr = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+
+            showToast(`جاري تحميل ملف الصوت: ${fileName} ...`);
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const dataUrl = e.target.result;
+                await AudioStore.save(type, dataUrl, `${fileName} (${fileSizeStr})`, file.size);
+                if (type === 'adhan_fajr') {
+                    state.fajrAudioSource = 'custom';
+                    const s1 = document.getElementById('cfg-stage-fajr-source');
+                    const s2 = document.getElementById('cfg-main-fajr-source');
+                    if (s1) s1.value = 'custom';
+                    if (s2) s2.value = 'custom';
+                } else if (type === 'adhan') {
+                    state.adhanAudioSource = 'custom';
+                    const s1 = document.getElementById('cfg-stage-adhan-source');
+                    const s2 = document.getElementById('cfg-main-adhan-source');
+                    if (s1) s1.value = 'custom';
+                    if (s2) s2.value = 'custom';
+                }
+                saveState();
+                await updateAudioBadgesUI();
+                const typeNameAr = type === 'adhan_fajr' ? 'أذان صلاة الفجر' : (type === 'adhan' ? 'الأذان العام' : 'تنبيه الإقامة');
+                showToast(`✔ تم رفع وحفظ صوت ${typeNameAr} بنجاح!`);
+                inputEl.value = "";
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function removeAudioFile(type) {
+            stopAllSounds();
+            await AudioStore.remove(type);
+            await updateAudioBadgesUI();
+            const typeNameAr = type === 'adhan_fajr' ? 'أذان صلاة الفجر' : (type === 'adhan' ? 'الأذان العام' : 'تنبيه الإقامة');
+            showToast(`تم حذف ملف صوت ${typeNameAr}`);
+        }
+
+        function onAdhanSourceChange(val) {
+            state.adhanAudioSource = val;
+            const s1 = document.getElementById('cfg-stage-adhan-source');
+            const s2 = document.getElementById('cfg-main-adhan-source');
+            if (s1) s1.value = val;
+            if (s2) s2.value = val;
+            saveState();
+        }
+
+        function onFajrSourceChange(val) {
+            state.fajrAudioSource = val;
+            const s1 = document.getElementById('cfg-stage-fajr-source');
+            const s2 = document.getElementById('cfg-main-fajr-source');
+            if (s1) s1.value = val;
+            if (s2) s2.value = val;
+            saveState();
+        }
+
+        function onSoundEnabledChange(val) {
+            state.soundEnabled = val === "1";
+            updateSoundIconUI();
+            saveState();
+        }
+
+        function onAudioVolumeChange(val) {
+            state.audioVolume = parseInt(val) || 100;
+            const disp = document.getElementById('disp-val-volume');
+            if (disp) disp.textContent = `${state.audioVolume}%`;
+            if (activeHtmlAudio) {
+                activeHtmlAudio.volume = state.audioVolume / 100;
+            }
+            saveState();
+        }
+
+        function toggleSoundQuick() {
+            state.soundEnabled = !state.soundEnabled;
+            updateSoundIconUI();
+            saveState();
+            showToast(state.soundEnabled ? "🔊 تم تفعيل الصوت" : "🔇 تم كتم الصوت");
+        }
+
+        function updateSoundIconUI() {
+            const btn = document.getElementById('btn-toggle-sound');
+            if (btn) {
+                btn.textContent = state.soundEnabled ? "🔊" : "🔇";
+                btn.title = state.soundEnabled ? "الصوت مفعّل (اضغط للكتم)" : "الصوت مكتوم (اضغط للتفعيل)";
+            }
+            const sel = document.getElementById('cfg-sound-enabled');
+            if (sel) sel.value = state.soundEnabled ? "1" : "0";
+
+            // Drawer sound button updates
+            const drawerBtn = document.getElementById('btn-drawer-toggle-sound');
+            const drawerIcon = document.getElementById('disp-drawer-sound-icon');
+            const drawerText = document.getElementById('disp-drawer-sound-text');
+            if (drawerIcon) drawerIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+            if (drawerText) drawerText.textContent = state.soundEnabled ? "الصوت مفعل (اضغط للكتم)" : "الصوت مكتوم (اضغط للتفعيل)";
+            if (drawerBtn) {
+                drawerBtn.style.background = state.soundEnabled ? "#064e3b" : "#450a0a";
+                drawerBtn.style.borderColor = state.soundEnabled ? "#10b981" : "#ef4444";
+                drawerBtn.style.color = state.soundEnabled ? "#a7f3d0" : "#fca5a5";
+            }
+        }
+
+        function stopAllSounds() {
+            try {
+                if (activeHtmlAudio) {
+                    activeHtmlAudio.pause();
+                    activeHtmlAudio.currentTime = 0;
+                    activeHtmlAudio = null;
+                }
+                updateAudioPlayButtonsUI(false);
+                if (activeSoundTimeouts && activeSoundTimeouts.length) {
+                    activeSoundTimeouts.forEach(t => clearTimeout(t));
+                    activeSoundTimeouts = [];
+                }
+                if (activeAudioNodes && activeAudioNodes.length) {
+                    activeAudioNodes.forEach(osc => {
+                        try { osc.stop(); osc.disconnect(); } catch (e) {}
+                    });
+                    activeAudioNodes = [];
+                }
+                if (activeAudioCtx) {
+                    try { activeAudioCtx.close(); } catch (e) {}
+                    activeAudioCtx = null;
+                }
+            } catch (e) {}
+        }
+
         function playChimeTone(f, dur) {
             if (!state.soundEnabled) return;
             try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (!activeAudioCtx || activeAudioCtx.state === 'closed') {
+                    activeAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const ctx = activeAudioCtx;
                 const osc = ctx.createOscillator();
                 const g = ctx.createGain();
+                const volMultiplier = (state.audioVolume !== undefined ? state.audioVolume : 100) / 100;
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(f, ctx.currentTime);
-                g.gain.setValueAtTime(0.35, ctx.currentTime);
+                g.gain.setValueAtTime(0.35 * volMultiplier, ctx.currentTime);
                 g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
                 osc.connect(g);
                 g.connect(ctx.destination);
                 osc.start();
                 osc.stop(ctx.currentTime + dur);
+                activeAudioNodes.push(osc);
+                osc.onended = () => {
+                    const idx = activeAudioNodes.indexOf(osc);
+                    if (idx > -1) activeAudioNodes.splice(idx, 1);
+                };
             } catch (e) {}
         }
 
         function playTestAdhanSound() {
+            stopAllSounds();
             playChimeTone(440, 0.8);
-            setTimeout(() => playChimeTone(554.37, 0.8), 350);
-            setTimeout(() => playChimeTone(659.25, 1.2), 700);
+            activeSoundTimeouts.push(setTimeout(() => playChimeTone(554.37, 0.8), 350));
+            activeSoundTimeouts.push(setTimeout(() => playChimeTone(659.25, 1.2), 700));
+        }
+
+        async function testAudioPlay(type) {
+            stopAllSounds();
+            if (!state.soundEnabled) {
+                showToast("الصوت مكتوم حالياً، يرجى تفعيل الصوت أولاً");
+                return;
+            }
+            const vol = (state.audioVolume !== undefined ? state.audioVolume : 100) / 100;
+            activePlayingType = type;
+
+            if (type === 'adhan_fajr') {
+                const src = state.fajrAudioSource || 'custom';
+                if (src === 'silent') {
+                    showToast("وضع أذان الفجر الحالي مضبوط على: صامت");
+                    return;
+                }
+                if (src === 'same_as_adhan') {
+                    return testAudioPlay('adhan');
+                }
+                if (src === 'custom') {
+                    const item = await AudioStore.get('adhan_fajr');
+                    if (item && item.data) {
+                        try {
+                            const audio = new Audio(item.data);
+                            audio.volume = vol;
+                            activeHtmlAudio = audio;
+                            audio.onended = () => stopAllSounds();
+                            updateAudioPlayButtonsUI(true, 'fajr');
+                            audio.play().catch(e => {
+                                console.warn("Fajr audio play error, falling back to chime:", e);
+                                playTestAdhanSound();
+                            });
+                            return;
+                        } catch (e) {}
+                    } else {
+                        // Fallback to general adhan if uploaded
+                        const genItem = await AudioStore.get('adhan');
+                        if (genItem && genItem.data) {
+                            try {
+                                const audio = new Audio(genItem.data);
+                                audio.volume = vol;
+                                activeHtmlAudio = audio;
+                                audio.onended = () => stopAllSounds();
+                                updateAudioPlayButtonsUI(true, 'fajr');
+                                audio.play().catch(() => playTestAdhanSound());
+                                return;
+                            } catch (e) {}
+                        }
+                    }
+                } else if (src === 'preset_makkah' || src === 'preset_madinah') {
+                    const url = PRESET_ADHAN_URLS[src];
+                    if (url) {
+                        try {
+                            const audio = new Audio(url);
+                            audio.volume = vol;
+                            activeHtmlAudio = audio;
+                            audio.onended = () => stopAllSounds();
+                            updateAudioPlayButtonsUI(true, 'fajr');
+                            audio.play().catch(() => playTestAdhanSound());
+                            return;
+                        } catch (e) {}
+                    }
+                }
+                // Fallback chime
+                updateAudioPlayButtonsUI(true, 'fajr');
+                playTestAdhanSound();
+                setTimeout(() => updateAudioPlayButtonsUI(false), 2500);
+            } else if (type === 'adhan') {
+                const src = state.adhanAudioSource || 'custom';
+                if (src === 'silent') {
+                    showToast("وضع الأذان الحالي مضبوط على: صامت");
+                    return;
+                }
+                if (src === 'custom') {
+                    const item = await AudioStore.get('adhan');
+                    if (item && item.data) {
+                        try {
+                            const audio = new Audio(item.data);
+                            audio.volume = vol;
+                            activeHtmlAudio = audio;
+                            audio.onended = () => stopAllSounds();
+                            updateAudioPlayButtonsUI(true, 'adhan');
+                            audio.play().catch(e => {
+                                console.warn("Audio play error, falling back to chime:", e);
+                                playTestAdhanSound();
+                            });
+                            return;
+                        } catch (e) {}
+                    }
+                } else if (src === 'preset_makkah' || src === 'preset_madinah') {
+                    const url = PRESET_ADHAN_URLS[src];
+                    if (url) {
+                        try {
+                            const audio = new Audio(url);
+                            audio.volume = vol;
+                            activeHtmlAudio = audio;
+                            audio.onended = () => stopAllSounds();
+                            updateAudioPlayButtonsUI(true, 'adhan');
+                            audio.play().catch(() => playTestAdhanSound());
+                            return;
+                        } catch (e) {}
+                    }
+                }
+                // Fallback chime
+                updateAudioPlayButtonsUI(true, 'adhan');
+                playTestAdhanSound();
+                setTimeout(() => updateAudioPlayButtonsUI(false), 2500);
+            } else if (type === 'iqama') {
+                const item = await AudioStore.get('iqama');
+                if (item && item.data) {
+                    try {
+                        const audio = new Audio(item.data);
+                        audio.volume = vol;
+                        activeHtmlAudio = audio;
+                        audio.onended = () => stopAllSounds();
+                        updateAudioPlayButtonsUI(true, 'iqama');
+                        audio.play().catch(() => playChimeTone(550, 1.0));
+                        return;
+                    } catch (e) {}
+                }
+                updateAudioPlayButtonsUI(true, 'iqama');
+                playChimeTone(554.37, 1.2);
+                setTimeout(() => updateAudioPlayButtonsUI(false), 1300);
+            }
+        }
+
+        /* Dismiss any active stage / image / dhikr / sound immediately (X Button in Top-Left Corner) */
+        function dismissCurrentStage() {
+            stopAllSounds();
+            if (activeStageInterval) {
+                clearInterval(activeStageInterval);
+                activeStageInterval = null;
+            }
+            if (activeAzkarInterval) {
+                clearInterval(activeAzkarInterval);
+                activeAzkarInterval = null;
+            }
+            isStageActive = false;
+            const silenceContent = document.getElementById('silence-text-content');
+            if (silenceContent) silenceContent.style.display = 'flex';
+            document.querySelectorAll('.stage-overlay').forEach(el => el.classList.remove('active'));
         }
 
         /* =========================================================================
@@ -1553,7 +3392,14 @@
             }
 
             overlay.classList.add('active');
-            playTestAdhanSound();
+            
+            // Special routing: If prayer is Fajr -> play adhan_fajr, otherwise play general adhan
+            const isFajr = (prayerName && (prayerName === 'الفجر' || prayerName.includes('فجر')));
+            if (isFajr) {
+                testAudioPlay('adhan_fajr');
+            } else {
+                testAudioPlay('adhan');
+            }
 
             let totalSec = (state.stages.adhan.min * 60) + state.stages.adhan.sec;
             if (totalSec <= 0) totalSec = 10; // safety
@@ -1596,7 +3442,7 @@
                 if (totalSec <= 0) {
                     clearInterval(activeStageInterval);
                     overlay.classList.remove('active');
-                    playChimeTone(880, 1.5);
+                    testAudioPlay('iqama');
                     // In the EXACT SAME SECOND -> Stage 3 (Silence Phone)
                     onComplete();
                 }
@@ -1609,11 +3455,16 @@
         function runSilencePhoneStage(onComplete) {
             const overlay = document.getElementById('overlay-stage-silence');
             const timerEl = document.getElementById('stage-silence-timer');
+            const silenceContent = document.getElementById('silence-text-content');
 
             if (state.stages.silence.img) {
                 overlay.style.backgroundImage = `url(${state.stages.silence.img})`;
+                // When custom background image is selected for silence phone,
+                // do NOT write any text/box over it - show the pure chosen background image directly!
+                if (silenceContent) silenceContent.style.display = 'none';
             } else {
                 overlay.style.backgroundImage = "radial-gradient(circle at center, #260C0C 0%, #0A0202 100%)";
+                if (silenceContent) silenceContent.style.display = 'flex';
             }
             overlay.classList.add('active');
 
@@ -1627,6 +3478,7 @@
                 if (totalSec <= 0) {
                     clearInterval(activeStageInterval);
                     overlay.classList.remove('active');
+                    if (silenceContent) silenceContent.style.display = 'flex';
                     // In the EXACT SAME SECOND -> Stage 4 (Azkar)
                     onComplete();
                 }
@@ -1705,21 +3557,35 @@
             const now = new Date();
             prayerSchedule = calculateDailyPrayers(now);
 
-            // Update Cards Times
+            // Update Cards Times & Shuruq Box
             prayerSchedule.forEach(p => {
                 const tEl = document.getElementById(`time-${p.id}`);
                 const iqEl = document.getElementById(`iqama-lbl-${p.id}`);
                 if (tEl) tEl.textContent = formatHM12(p.time);
-                if (iqEl) iqEl.textContent = `إقامة ${p.iqamaMin} د`;
+                if (iqEl) {
+                    if (p.id === 'shuruq') {
+                        iqEl.textContent = 'شروق الشمس';
+                    } else {
+                        iqEl.textContent = `إقامة ${p.iqamaMin} د`;
+                    }
+                }
             });
+
+            // Update Shuruq Side Box time (left of main clock)
+            const shuruqP = prayerSchedule.find(p => p.id === 'shuruq');
+            if (shuruqP) {
+                const shuruqValEl = document.getElementById('disp-shuruq-val');
+                if (shuruqValEl) shuruqValEl.textContent = formatHM12(shuruqP.time);
+            }
 
             updatePrayerOffsetTimeLabels();
 
-            // Find Next Prayer
+            // Find Next Obligatory Prayer
+            const obligatoryPrayers = prayerSchedule.filter(p => p.isPrayer);
             let nextPrayer = null;
-            for (let i = 0; i < prayerSchedule.length; i++) {
-                if (prayerSchedule[i].time > now) {
-                    nextPrayer = prayerSchedule[i];
+            for (let i = 0; i < obligatoryPrayers.length; i++) {
+                if (obligatoryPrayers[i].time > now) {
+                    nextPrayer = obligatoryPrayers[i];
                     break;
                 }
             }
@@ -1727,11 +3593,15 @@
                 // Next is Fajr tomorrow
                 const tomorrow = new Date(now);
                 tomorrow.setDate(tomorrow.getDate() + 1);
-                const nextList = calculateDailyPrayers(tomorrow);
+                const nextList = calculateDailyPrayers(tomorrow).filter(p => p.isPrayer);
                 nextPrayer = nextList[0];
             }
 
             document.getElementById('disp-next-prayer-title').textContent = nextPrayer.name;
+            const nextPrayerTimeEl = document.getElementById('disp-next-prayer-time');
+            if (nextPrayerTimeEl) {
+                nextPrayerTimeEl.textContent = formatHM12WithPeriod(nextPrayer.time);
+            }
 
             // Highlight prayer card
             document.querySelectorAll('.prayer-card-item').forEach(el => el.classList.remove('active-highlight'));
@@ -1777,7 +3647,7 @@
             document.getElementById('disp-greg-date').textContent = getGregorianArabic(now);
         }
 
-        /* Keyboard & Fullscreen */
+        /* Keyboard & Fullscreen & Brightness */
         document.getElementById('btn-fs').onclick = () => {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().catch(() => {});
@@ -1786,21 +3656,24 @@
             }
         };
 
+        const btnBri = document.getElementById('btn-brightness');
+        if (btnBri) {
+            btnBri.onclick = cycleBrightnessMode;
+        }
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'f' || e.key === 'F' || e.key === 'F11') {
                 e.preventDefault();
                 document.getElementById('btn-fs').click();
+            } else if (e.key === 'b' || e.key === 'B') {
+                cycleBrightnessMode();
             } else if (e.key === 's' || e.key === 'S') {
                 const drawer = document.getElementById('settings-drawer');
                 if (drawer.classList.contains('open')) closeSettingsDrawer();
                 else openSettingsDrawer();
             } else if (e.key === 'Escape') {
                 closeSettingsDrawer();
-                // Close any active test overlay
-                if (activeStageInterval) clearInterval(activeStageInterval);
-                if (activeAzkarInterval) clearInterval(activeAzkarInterval);
-                document.querySelectorAll('.stage-overlay').forEach(el => el.classList.remove('active'));
-                isStageActive = false;
+                dismissCurrentStage();
             }
         });
 
